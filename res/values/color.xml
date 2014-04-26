@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="zhuye_faqi">#AFCC0033</color>
+    <color name="zhuye_xiaoxi">#88339966</color>
+    <color name="zhuye_haoyou">#8FFF6600</color>
+    <color name="zhuye_shezhi">#8F999999</color>
+    <color name="green_main">#88BBEE90</color>
+</resources>

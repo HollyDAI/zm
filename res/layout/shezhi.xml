@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijing" >
+
+    <Button
+        android:id="@+id/sztuichu"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignBaseline="@+id/szshouji"
+        android:layout_alignBottom="@+id/szshouji"
+        android:layout_toRightOf="@+id/szshouji"
+        android:background="#999999"
+        android:textColor="#FFFFFF"
+        android:text="退出\n登陆" />
+
+    <Button
+        android:id="@+id/szgenggai"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/szgeren"
+        android:layout_centerVertical="true"
+        android:background="#A0522D"
+        android:textColor="#FFFFFF"
+        android:text="更改\n密码" />
+
+    <Button
+        android:id="@+id/sztixing"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/szgenggai"
+        android:background="#A52A2A"
+        android:textColor="#FFFFFF"
+        android:text="提醒\n设置" />
+
+    <Button
+        android:id="@+id/szyijian"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/sztixing"
+        android:background="#CCFF33"
+        android:textColor="#FFFFFF"
+        android:text="吐槽\n中心" />
+
+    <Button
+        android:id="@+id/szgeren"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#D2691E"
+        android:textColor="#FFFFFF"
+        android:layout_above="@+id/szgenggai"
+        android:layout_toLeftOf="@+id/szshouji"
+        android:text="个人\n信息" />
+
+    <Button
+        android:id="@+id/szshouji"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/sztixing"
+        android:layout_centerHorizontal="true"
+        android:background="#333399"
+        android:textColor="#FFFFFF"
+        android:text="手机\n绑定" />
+
+    <TextView
+        android:id="@+id/szbiaoti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="18dp"
+        android:text="设置"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30dp" />
+
+</RelativeLayout>

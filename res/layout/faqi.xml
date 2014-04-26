@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijing" >
+
+    <TextView
+        android:id="@+id/szbiaoti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:text="发起"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/fqbiaoti"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/fqnan"
+        android:layout_alignRight="@+id/fqrenshu"
+        android:layout_centerVertical="true"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="发起活动标题" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/fqnan"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/fqbiaoti"
+        android:layout_alignLeft="@+id/szbiaoti"
+        android:layout_marginBottom="18dp"
+        android:background="#FFFFFF"
+        android:hint="男" />
+
+    <Spinner
+        android:id="@+id/infoTypeSpinner"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_above="@id/fqnan" >
+    </Spinner>
+    
+    <EditText
+        android:id="@+id/fqmiaoshu"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_above="@+id/fqfabu"
+        android:layout_alignLeft="@+id/fqshijian"
+        android:layout_alignRight="@+id/fqbiaoti"
+        android:layout_below="@+id/fqshijian"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="24dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:gravity="left|top"
+        android:hint="活动详细说明及对参与者的要求"
+        android:inputType="textMultiLine"
+        android:minLines="6" />
+
+    <Button
+        android:id="@+id/fqfabu"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="@color/green_main"
+        android:text="发布"
+        android:textSize="23sp" />
+
+    <EditText
+        android:id="@+id/fqjiezhi"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@+id/fqnv"
+        android:layout_alignBottom="@+id/fqnv"
+        android:layout_alignRight="@+id/fqbiaoti"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="截止日期" />
+
+    <EditText
+        android:id="@+id/fqnv"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@+id/fqnan"
+        android:layout_alignBottom="@+id/fqnan"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/fqnan"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="女" />
+
+    <EditText
+        android:id="@+id/fqrenshu"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/fqjiezhi"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="18dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="人数限制" />
+
+    <EditText
+        android:id="@+id/fqshijian"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/fqbiaoti"
+        android:layout_below="@+id/fqbiaoti"
+        android:layout_marginTop="17dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="活动时间" />
+
+</RelativeLayout>

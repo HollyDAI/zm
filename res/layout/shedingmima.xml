@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijing" >
+
+    <EditText
+        android:id="@+id/sdqueren"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:hint="重新输入"
+        android:background="#FFFFFF"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/sdqueding"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="36dp"
+        android:layout_marginLeft="28dp"
+        android:background="#339933"
+        android:text="确定"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/sdtiaoguo"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@+id/sdqueding"
+        android:layout_alignBottom="@+id/sdqueding"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:background="#339933"
+        android:text="跳过"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/szbiaoti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="14dp"
+        android:text="设定新的登录密码"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/sdxinmima"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_above="@+id/sdqueren"
+        android:layout_alignLeft="@+id/sdqueren"
+        android:layout_marginBottom="56dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="新的密码" />
+
+</RelativeLayout>

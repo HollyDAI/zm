@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijing" >
+
+    <Button
+        android:id="@+id/tctijiao"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:background="#339933"
+        android:textSize="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
+        android:text="提交" />
+    <TextView
+        android:id="@+id/zcbiaoti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="吐槽中心"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/tctucao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tctijiao"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/zcbiaoti"
+        android:ems="10"
+        android:gravity="left|top"
+        android:hint="有什么要吐槽的尽管来吧！"
+        android:inputType="textMultiLine"
+        android:minLines="6" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>

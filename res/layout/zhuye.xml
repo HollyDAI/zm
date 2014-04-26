@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijing" >
+
+    <Button
+        android:id="@+id/zyfaqi"
+        android:layout_width="110sp"
+        android:layout_height="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/zhuye_faqi"
+        android:text="发起"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/zyxiaoxi"
+        android:layout_width="wrap_content"
+        android:layout_height="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/zyshezhi"
+        android:layout_toRightOf="@+id/zyfaqi"
+        android:background="@color/zhuye_xiaoxi"
+        android:text="消息"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/zyshezhi"
+        android:layout_width="110sp"
+        android:layout_height="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/zhuye_shezhi"
+        android:text="设置"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/zyfaqi"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+    </ListView>
+
+</RelativeLayout>

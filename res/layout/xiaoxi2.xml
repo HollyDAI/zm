@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijing" >
+    <TextView
+        android:id="@+id/zcbiaoti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="消息"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/xx2huodongming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/zcbiaoti"
+        android:layout_below="@+id/zcbiaoti"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="16dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/xx2zhushi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/xx2renshuxianzhi"
+        android:layout_below="@+id/xx2renshuxianzhi"
+        android:layout_marginTop="16dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/xx2canjiarenshu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/xx2zhushi"
+        android:layout_below="@+id/xx2zhushi"
+        android:layout_marginTop="18dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/xx2huodongshijian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/xx2renshuxianzhi"
+        android:layout_alignBottom="@+id/xx2renshuxianzhi"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/xx2renshuxianzhi"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/xx2tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/xx2canjiarenshu"
+        android:layout_below="@+id/xx2canjiarenshu"
+        android:layout_marginTop="26dp"
+        android:text="选中头像以允许其加入" />
+
+    <ImageView
+        android:id="@+id/xx2nvbiao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/xx2tv1"
+        android:layout_below="@+id/xx2tv1"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/xx2nanbiao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/xx2nvbiao"
+        android:layout_marginRight="31dp"
+        android:src="@drawable/ic_launcher" />
+
+    <Button
+        android:id="@+id/xx2wancheng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:text="Button" />
+
+    <ScrollView
+        android:id="@+id/xx2nv"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/xx2wancheng"
+        android:layout_alignLeft="@+id/xx2nvbiao"
+        android:layout_below="@+id/xx2nvbiao" >
+
+        <LinearLayout
+            android:id="@+id/nvlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/xx2nan"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/xx2wancheng"
+        android:layout_alignRight="@+id/xx2nanbiao"
+        android:layout_below="@+id/xx2nanbiao"
+        android:layout_toRightOf="@+id/scrollView1" >
+
+        <LinearLayout
+            android:id="@+id/nanlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/xx2renshuxianzhi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/xx2huodongming"
+        android:layout_below="@+id/xx2huodongming"
+        android:layout_marginTop="16dp"
+        android:text="TextView" />
+
+</RelativeLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijing" >
+
+    <EditText
+        android:id="@+id/wsxueyuan"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:hint="学院"
+        android:background="#FFFFFF"
+        android:layout_alignLeft="@+id/wsnicheng"
+        android:layout_alignRight="@+id/wsnicheng"
+        android:layout_below="@+id/wsnicheng"
+        android:layout_marginTop="40dp"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/wszhuanye"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:hint="专业"
+        android:background="#FFFFFF"
+        android:layout_alignLeft="@+id/wsxueyuan"
+        android:layout_alignRight="@+id/wsxueyuan"
+        android:layout_below="@+id/wsxueyuan"
+        android:layout_marginTop="48dp"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/wsqueding"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:background="#339933"
+        android:textSize="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:text="确定" />
+    <TextView
+        android:id="@+id/zcbiaoti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="完善我的个人信息"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/wsnicheng"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/zcbiaoti"
+        android:layout_below="@+id/zcbiaoti"
+        android:layout_marginTop="41dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="昵称" />
+
+    <ImageButton
+        android:id="@+id/imb"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/wsxueyuan"
+        android:layout_alignTop="@+id/wsnicheng"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/wsnicheng"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/btn_star" />
+
+    <ImageButton
+        android:id="@+id/wsnan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wszhuanye"
+        android:layout_marginTop="15dp"
+        android:layout_toLeftOf="@+id/wsqueding"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/wsnv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/wsnan"
+        android:layout_toRightOf="@+id/wsqueding"
+        android:src="@drawable/ic_launcher" />
+
+</RelativeLayout>
