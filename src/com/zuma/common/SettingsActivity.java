@@ -32,7 +32,6 @@ public class SettingsActivity extends Activity {
 				// 此处使用putExtras，接受方就响应的使用getExtra
 				mainIntent.putExtras(b);
 				SettingsActivity.this.startActivity(mainIntent);
-				SettingsActivity.this.finish();
 			}
 		});
 		bangding.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +42,6 @@ public class SettingsActivity extends Activity {
 				// 此处使用putExtras，接受方就响应的使用getExtra
 				mainIntent.putExtras(b);
 				SettingsActivity.this.startActivity(mainIntent);
-				SettingsActivity.this.finish();
 			}
 		});
 		tuichu.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +59,7 @@ public class SettingsActivity extends Activity {
 				// 此处使用putExtras，接受方就响应的使用getExtra
 				mainIntent.putExtras(b);
 				SettingsActivity.this.startActivity(mainIntent);
+				SettingsActivity.this.finish();
 			}
 		});
 		tixing.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +76,7 @@ public class SettingsActivity extends Activity {
 				// 此处使用putExtras，接受方就响应的使用getExtra
 				mainIntent.putExtras(b);
 				SettingsActivity.this.startActivity(mainIntent);
+				finish();
 			}
 		});
 	}

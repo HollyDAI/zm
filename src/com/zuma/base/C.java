@@ -6,9 +6,9 @@ public final class C {
 	private static boolean isLogin = false;
 	
 	public static final class api {
-		public static final String Server				= "http://115.28.238.91:8000";
-		public static final String login			= "/user/login";
-//		public static final String index			= "/index/index";
+		public static final String Server			= "http://115.28.238.91:8000/";
+		public static final String login			= Server + "user/login";
+		public static final String actList			= Server + "get/activityByCount";
 		
 //		public static final String logout			= "/index/logout";
 //		public static final String faceView 		= "/image/faceView";
@@ -51,9 +51,9 @@ public final class C {
 	}
 	
 	public static final class err {
-		public static final String network			= "缃戠粶閿欒";
-		public static final String message			= "娑堟伅閿欒";
-		public static final String jsonFormat		= "娑堟伅鏍煎紡閿欒";
+		public static final String network			= "网络错误";
+		public static final String message			= "信息错误";
+		public static final String jsonFormat		= "读取信息格式错误";
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,7 +77,7 @@ public final class C {
 	// additional settings
 	
 	public static final class web {
-		public static final String base				= "http://192.168.1.2:8002";
+		public static final String base				= "http://";
 		public static final String index			= base + "/index.php";
 		public static final String gomap			= base + "/gomap.php";
 	}

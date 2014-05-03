@@ -1,4 +1,4 @@
-package com.zuma.action;
+package com.zuma.sql;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -77,8 +77,7 @@ public class LoginAction {
 	public static int getLoginResult(String username, String password) {
 
 		int result = 0;
-		String apiURL = api.Server + api.login + "?username=" + username
-				+ "&password=" + password;
+		String apiURL = api.login;
 
 		ArrayList<NameValuePair> namevaluepairs = new ArrayList<NameValuePair>();
 		namevaluepairs.add(new BasicNameValuePair("username", username));

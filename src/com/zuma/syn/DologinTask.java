@@ -2,8 +2,8 @@ package com.zuma.syn;
 
 import java.io.Serializable;
 
-import com.zuma.action.LoginAction;
 import com.zuma.common.HomeActivity;
+import com.zuma.sql.LoginAction;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -40,7 +40,6 @@ public class DologinTask extends AsyncTask<Object, Object, Boolean> {
 			Intent intent = new Intent(a, HomeActivity.class);
 			Bundle b = new Bundle();
 			b.putString("userToken", LoginAction.getuserToken());
-			b.putString("username", username.toString());
 			// b.putSerializable("contactWays", (Serializable)
 			// LoginAction.getContactWays());
 

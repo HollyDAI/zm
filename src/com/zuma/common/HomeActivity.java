@@ -20,11 +20,14 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import com.common.zuma.R;
+import com.zuma.base.C.api;
+import com.zuma.syn.GetAcitivityByCountTask;
 import com.zuma.util.MySimpleAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -33,7 +36,9 @@ import android.widget.Toast;
 
 public class HomeActivity extends Activity {
 	private Button faqi, xiaoxi, shezhi, canjia, btn[];
-	private String fanhui, yonghu;
+	private String fanhui;
+	private Bundle b;
+	private String userToken;
 	private int renshu, i, j, chenggong, gid[], grenshuxianzhi[], gshijian[],
 			gjiezhishijian[];
 	private String ghuodongming[], gzhushi[];
@@ -43,17 +48,18 @@ public class HomeActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.zhuye);
 
-		// yonghu = getIntent().getExtras().getString("userToken");
-		yonghu = "ABCholly";
+		b = getIntent().getBundleExtra("idValue");
+		userToken = b.getString("userToken");
 
-		// shuju();
+		(new GetAcitivityByCountTask()).execute(userToken);
+		
 		faqi = (Button) findViewById(R.id.zyfaqi);
 		faqi.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent mainIntent = new Intent(HomeActivity.this,
 						PublishActivity.class);
 				Bundle b = new Bundle();
-				b.putString("userToken", yonghu);
+				b.putString("userToken", userToken);
 				// 此处使用putExtras，接受方就响应的使用getExtra
 				mainIntent.putExtras(b);
 				HomeActivity.this.startActivity(mainIntent);
@@ -65,7 +71,7 @@ public class HomeActivity extends Activity {
 				Intent mainIntent = new Intent(HomeActivity.this,
 						MessageListActivity.class);
 				Bundle b = new Bundle();
-				b.putString("userToken", yonghu);
+				b.putString("userToken", userToken);
 				// 此处使用putExtras，接受方就响应的使用getExtra
 				mainIntent.putExtras(b);
 				HomeActivity.this.startActivity(mainIntent);
@@ -77,7 +83,7 @@ public class HomeActivity extends Activity {
 				Intent mainIntent = new Intent(HomeActivity.this,
 						SettingsActivity.class);
 				Bundle b = new Bundle();
-				b.putString("userToken", yonghu);
+				b.putString("userToken", userToken);
 				// 此处使用putExtras，接受方就响应的使用getExtra
 				mainIntent.putExtras(b);
 				HomeActivity.this.startActivity(mainIntent);
@@ -116,62 +122,5 @@ public class HomeActivity extends Activity {
 			mylist.add(map);
 		}
 		return mylist;
-	}
-
-	public void shuju() {
-		String uriAPI = "http: 192.168.32.5:8000/activity/dig?userToken="
-				+ yonghu;
-		/* 建立HTTP Post联机 */
-		HttpPost httpRequest = new HttpPost(uriAPI);
-		/*
-		 * Post运作传送变量必须用NameValuePair[]数组储存
-		 */
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("userToken", yonghu));
-		try {
-			/* 发出HTTP request */
-			httpRequest.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-			/* 取得HTTP response */
-			HttpResponse httpResponse = new DefaultHttpClient()
-					.execute(httpRequest);
-			/* 若状态码为200 ok */
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				/* 取出响应字符串 */
-				fanhui = EntityUtils.toString(httpResponse.getEntity());
-			} else {
-				Toast.makeText(getApplicationContext(), "网络错误！",
-						Toast.LENGTH_SHORT).show();
-			}
-		} catch (ClientProtocolException e) {
-			Toast.makeText(getApplicationContext(), "网络错误！", Toast.LENGTH_SHORT)
-					.show();
-		} catch (IOException e) {
-			Toast.makeText(getApplicationContext(), "网络错误！", Toast.LENGTH_SHORT)
-					.show();
-		} catch (Exception e) {
-			Toast.makeText(getApplicationContext(), "网络错误！", Toast.LENGTH_SHORT)
-					.show();
-		}
-		try {
-
-			JSONTokener jsonParser = new JSONTokener(fanhui);
-			JSONObject js = (JSONObject) jsonParser.nextValue();
-			// 接下来的就是JSON对象的操作了
-			JSONArray numberList = js.getJSONArray("activities");
-			for (i = 0; i < numberList.length(); i++) {
-				gid[i] = numberList.getJSONObject(i).getInt("id");
-				ghuodongming[i] = numberList.getJSONObject(i)
-						.getString("title");
-				grenshuxianzhi[i] = numberList.getJSONObject(i).getInt("limit");
-				gshijian[i] = numberList.getJSONObject(i).getInt("proposeTime");
-				gzhushi[i] = numberList.getJSONObject(i).getString(
-						"description");
-				gjiezhishijian[i] = numberList.getJSONObject(i).getInt(
-						"deadLine");
-			}
-			chenggong = js.getInt("success");
-		} catch (JSONException ex) {
-			// 异常处理代码
-		}
 	}
 }
