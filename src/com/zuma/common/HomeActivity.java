@@ -52,6 +52,7 @@ public class HomeActivity extends Activity {
 		userToken = b.getString("userToken");
 
 		(new GetAcitivityByCountTask()).execute(userToken);
+		ListView list = (ListView) findViewById(R.id.listView2);
 		
 		faqi = (Button) findViewById(R.id.zyfaqi);
 		faqi.setOnClickListener(new View.OnClickListener() {
@@ -89,38 +90,5 @@ public class HomeActivity extends Activity {
 				HomeActivity.this.startActivity(mainIntent);
 			}
 		});
-		ListView list = (ListView) findViewById(R.id.listView2);
-		ArrayList<HashMap<String, Object>> mylist = buildList();
-		MySimpleAdapter mSchedule = new MySimpleAdapter(this, // 没什么解释
-				mylist, // 数据来源
-				R.layout.list_item, // ListItem的XML实现
-				// 动态数组与ListItem对应的子项
-				new String[] { "huodongming", "renshuxianzhi", "shijian",
-						"zhushi", "jiezhishijian", "touxiang", "canjia" },
-				// ListItem的XML文件里面的两个TextView ID
-				new int[] { R.id.zyhuodongming, R.id.zyrenshuxianzhi,
-						R.id.zyshijian, R.id.zyzhushi, R.id.zyjiezhishijian,
-						R.id.img, R.id.zycanjia });
-
-		list.setAdapter(mSchedule);
-	}
-
-	private ArrayList<HashMap<String, Object>> buildList() {
-
-		ArrayList<HashMap<String, Object>> mylist = new ArrayList<HashMap<String, Object>>();
-		// 添加list内容
-		for (j = 0; j < i; j++) {
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("huodongming", ghuodongming[j]);
-			map.put("touxiang",
-					"http: www.baidu.com/img/baidu_logo_jr_1003_315.gif");
-			map.put("renshuxianzhi", grenshuxianzhi[j]);
-			map.put("shijian", gshijian[j]);
-			map.put("zhushi", gzhushi[j]);
-			map.put("jiezhishijian", gjiezhishijian[j]);
-			map.put("canjia", gid[j]);
-			mylist.add(map);
-		}
-		return mylist;
 	}
 }

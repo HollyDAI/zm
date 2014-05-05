@@ -25,12 +25,12 @@ import android.util.Log;
 import com.zuma.base.C.api;
 
 public class GetActivitybyCount {
-	private static String result;
-	
-	public static ArrayList<HashMap<String, String>> getActivityByCount(CharSequence userToken, CharSequence activityid,CharSequence count) {
+
+	public static ArrayList<HashMap<String, String>> getActivityByCount(
+			CharSequence userToken, CharSequence activityid, CharSequence count) {
 		int success = 0;
 		String uriAPI = api.actList;
-		ArrayList<HashMap<String , String >> result = new ArrayList<HashMap<String,String>>();
+		ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
 
 		Log.i("HomeActivity getDATAurl", uriAPI);
 
@@ -55,28 +55,41 @@ public class GetActivitybyCount {
 			if (line != null && !line.equals(br)) {
 				JSONTokener jsonParser = new JSONTokener(line);
 				JSONObject js = (JSONObject) jsonParser.nextValue();
-//				  接下来的就是JSON对象的操作了
+				// 接下来的就是JSON对象的操作了
 				JSONArray numberList = js.getJSONArray("actList");
 				for (int i = 0; i < numberList.length(); i++) {
 					HashMap<String, String> map = new HashMap<String, String>();
-					
-					map.put("id", numberList.getJSONObject(i).getInt("id")+"");
-					map.put("title", numberList.getJSONObject(i).getString("title"));
-					map.put("numLimit", numberList.getJSONObject(i).getInt("numLimit")+"");
-					map.put("state", numberList.getJSONObject(i).getString("state"));
-					map.put("ownerId", numberList.getJSONObject(i).getString("ownerId"));
-					map.put("desc", numberList.getJSONObject(i).getString("desc"));
-					map.put("proposeTime", numberList.getJSONObject(i).getString("proposeTime"));
-					map.put("deadLine", numberList.getJSONObject(i).getString("deadLine"));
-					map.put("maleLimit", numberList.getJSONObject(i).getString("maleLimit"));
-					map.put("femaleLimit", numberList.getJSONObject(i).getString("femaleLimit"));
-					
+
+					map.put("id", numberList.getJSONObject(i).getInt("id") + "");
+					map.put("title",
+							numberList.getJSONObject(i).getString("title"));
+					map.put("numLimit",
+							numberList.getJSONObject(i).getInt("numLimit") + "");
+					map.put("state",
+							numberList.getJSONObject(i).getString("state"));
+					map.put("ownerId",
+							numberList.getJSONObject(i).getString("ownerId"));
+					map.put("desc",
+							numberList.getJSONObject(i).getString("desc"));
+					map.put("proposeTime", numberList.getJSONObject(i)
+							.getString("proposeTime"));
+					map.put("deadLine",
+							numberList.getJSONObject(i).getString("deadLine"));
+					map.put("maleLimit",
+							numberList.getJSONObject(i).getString("maleLimit"));
+					map.put("femaleLimit", numberList.getJSONObject(i)
+							.getString("femaleLimit"));
+
 					result.add(map);
 				}
-				
 				success = js.getInt("success");
-				
-				Log.i("看取回的result和success", result + "\n"+success);
+
+				if (success != 1) {
+					HashMap<String, String> map = new HashMap<String, String>();
+					map.put("success", "0");
+					result.add(map);
+				}
+				Log.i("看取回的result和success", result + "\n" + success);
 			}
 		} catch (Exception e) {
 			Log.e("GetAcitivitybyCountError", e.getMessage());
