@@ -33,7 +33,7 @@ public final class R {
     }
     public static final class id {
         public static final int ScrollView01=0x7f090053;
-        public static final int action_settings=0x7f090066;
+        public static final int action_settings=0x7f090067;
         public static final int bdchongfa=0x7f090003;
         public static final int bdhuoqu=0x7f090000;
         public static final int bdqueding=0x7f090005;
@@ -47,12 +47,12 @@ public final class R {
         public static final int cyxueyuanming=0x7f090008;
         public static final int cyzhuanye=0x7f090009;
         public static final int cyzhuanyeming=0x7f09000a;
-        public static final int dlmima=0x7f090062;
-        public static final int dlqueding=0x7f090063;
-        public static final int dltouxiang=0x7f090060;
-        public static final int dlyonghuming=0x7f090061;
-        public static final int dlzhaohui=0x7f090064;
-        public static final int dlzhuce=0x7f090065;
+        public static final int dlmima=0x7f090063;
+        public static final int dlqueding=0x7f090064;
+        public static final int dltouxiang=0x7f090061;
+        public static final int dlyonghuming=0x7f090062;
+        public static final int dlzhaohui=0x7f090065;
+        public static final int dlzhuce=0x7f090066;
         public static final int fqbiaoti=0x7f090010;
         public static final int fqfabu=0x7f09000f;
         public static final int fqjiezhi=0x7f090012;
@@ -66,7 +66,7 @@ public final class R {
         public static final int img=0x7f090016;
         public static final int linearLayout1=0x7f090041;
         public static final int listView1=0x7f090044;
-        public static final int listView2=0x7f09005d;
+        public static final int listView2=0x7f09005e;
         public static final int nanlayout=0x7f090052;
         public static final int nvlayout=0x7f09004f;
         public static final int scrollView1=0x7f090051;
@@ -100,6 +100,7 @@ public final class R {
         public static final int wsxueyuan=0x7f09003e;
         public static final int wszhuanye=0x7f09003a;
         public static final int xdbiaoti=0x7f090054;
+        public static final int xdhaoyoushu=0x7f090055;
         public static final int xiangling=0x7f090030;
         public static final int xinxiaoxi=0x7f090035;
         public static final int xx2canjiarenshu=0x7f090048;
@@ -116,23 +117,23 @@ public final class R {
         public static final int xxbiaoti=0x7f090043;
         public static final int xxhuodongming=0x7f09001f;
         public static final int xxxiaoxishu=0x7f090020;
-        public static final int yqbiaoti=0x7f090055;
+        public static final int yqbiaoti=0x7f090056;
         public static final int zcbiaoti=0x7f09002a;
-        public static final int zhchongfa=0x7f090057;
+        public static final int zhchongfa=0x7f090058;
         public static final int zhendong=0x7f09002e;
-        public static final int zhhuoqu=0x7f090059;
-        public static final int zhqueding=0x7f090056;
-        public static final int zhshouji=0x7f09005a;
-        public static final int zhyanzheng=0x7f090058;
+        public static final int zhhuoqu=0x7f09005a;
+        public static final int zhqueding=0x7f090057;
+        public static final int zhshouji=0x7f09005b;
+        public static final int zhyanzheng=0x7f090059;
         public static final int zycanjia=0x7f09001d;
-        public static final int zyfaqi=0x7f09005b;
-        public static final int zyhaoyou=0x7f09005f;
+        public static final int zyfaqi=0x7f09005c;
+        public static final int zyhaoyou=0x7f090060;
         public static final int zyhuodongming=0x7f090017;
         public static final int zyjiezhishijian=0x7f09001c;
         public static final int zyrenshuxianzhi=0x7f090018;
-        public static final int zyshezhi=0x7f09005c;
+        public static final int zyshezhi=0x7f09005d;
         public static final int zyshijian=0x7f090019;
-        public static final int zyxiaoxi=0x7f09005e;
+        public static final int zyxiaoxi=0x7f09005f;
         public static final int zyyaoqing=0x7f09001e;
         public static final int zyzhushi=0x7f09001a;
     }
