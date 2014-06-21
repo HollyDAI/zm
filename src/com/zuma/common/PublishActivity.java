@@ -32,15 +32,21 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.common.zuma.R;
+import com.zuma.base.C;
+import com.zuma.base.C.api;
 
 public class PublishActivity extends Activity {
-	private String cnan, cnv, fanhui, crenshu, cjiezhi, cbiaoti, cshijian,
+	
+	private Bundle b;
+	private String userToken;
+	
+	private String climit, fanhui, crenshu, cjiezhi, cbiaoti, cshijian,
 			cmiaoshu, yonghu;
-	private int chenggong;
-	private EditText renshu, jiezhi, biaoti, shijian, miaoshu, nan, nv;
+	private int success;
+	private EditText renshu, jiezhi, biaoti, shijian, miaoshu, limit;
 	private Button fabu;
-	private static final String[] m = { "学术", "美食", "体育", "旅行", "娱乐",
-			"其他" };
+//	private static final String[] m = { "学术", "美食", "体育", "旅行", "娱乐",
+//			"其他" };
 	private Spinner spinner;
 	private ArrayAdapter<String> adapter;
 
@@ -48,12 +54,15 @@ public class PublishActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.faqi);
-		// !!!!!!!!!!!!!!!!!!
-		// yonghu = getIntent().getExtras().getString("userToken");
-		yonghu = "PublishAcitivity";
 		fabu = (Button) findViewById(R.id.fqfabu);
 		fabu.setOnClickListener(new fabuListener());
-
+		renshu = (EditText) findViewById(R.id.fqrenshu);
+		jiezhi = (EditText) findViewById(R.id.fqjiezhi);
+		biaoti = (EditText) findViewById(R.id.fqbiaoti);
+		shijian = (EditText) findViewById(R.id.fqshijian);
+		miaoshu = (EditText) findViewById(R.id.fqmiaoshu);
+		limit = (EditText)findViewById(R.id.fqyaoqiu);
+		
 		//spinner = (Spinner) findViewById(R.id.infoTypeSpinner);
 		//将可选内容与ArrayAdapter连接起来
 		//adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,m);
@@ -69,6 +78,11 @@ public class PublishActivity extends Activity {
 		
 		//设置默认值
 		//spinner.setVisibility(View.VISIBLE);
+		
+
+		b = getIntent().getBundleExtra("idValue");
+		userToken = b.getString("userToken");
+		
 	}
 
 	class fabuListener implements OnClickListener {
@@ -76,24 +90,18 @@ public class PublishActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			renshu = (EditText) findViewById(R.id.fqrenshu);
-			jiezhi = (EditText) findViewById(R.id.fqjiezhi);
-			biaoti = (EditText) findViewById(R.id.fqbiaoti);
-			shijian = (EditText) findViewById(R.id.fqshijian);
-			miaoshu = (EditText) findViewById(R.id.fqmiaoshu);
+			
 			crenshu = renshu.getText().toString();
 			cjiezhi = jiezhi.getText().toString();
 			cbiaoti = biaoti.getText().toString();
 			cshijian = shijian.getText().toString();
 			cmiaoshu = miaoshu.getText().toString();
-			cnan = nan.getText().toString();
-			cnv = nv.getText().toString();
+			climit = limit.getText().toString();
 			try {
 				
-				// shuju();
-				chenggong = 1;
+				shuju();
 				
-				if (chenggong == 1) {
+				if (success == 1) {
 					Toast.makeText(PublishActivity.this, "消息发布成功啦！", Toast.LENGTH_LONG);
 					Intent mainIntent = new Intent(PublishActivity.this,
 							MessageListActivity.class);
@@ -104,7 +112,7 @@ public class PublishActivity extends Activity {
 					PublishActivity.this.startActivity(mainIntent);
 				} else {
 					Toast.makeText(getApplicationContext(),
-							"验证码错误或手机号不可用，请核对后重新输入！", Toast.LENGTH_SHORT)
+							"消息发布失败(┬＿┬)请重新发布", Toast.LENGTH_SHORT)
 							.show();
 				}
 			} catch (Exception e) {
@@ -116,33 +124,23 @@ public class PublishActivity extends Activity {
 	}
 
 	public void shuju() {
-		String uriAPI = "http://192.168.32.5:8000/activity/new?userToken="
-				+ yonghu + "&limit=" + crenshu + "&limitMale=" + cnan
-				+ "&limitFemale=" + cnv + "&deadline=" + cjiezhi + "&title="
-				+ cbiaoti + "&time=" + cshijian + "&description=" + cmiaoshu;
-		/* 建立HTTP Post联机 */
+		String uriAPI = api.postAct;
+
 		HttpPost httpRequest = new HttpPost(uriAPI);
-		/*
-		 * Post运作传送变量必须用NameValuePair[]数组储存
-		 */
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("userToken", yonghu));
 		params.add(new BasicNameValuePair("limit", crenshu));
-		params.add(new BasicNameValuePair("limitMale", cnan));
-		params.add(new BasicNameValuePair("limitFemale", cnv));
 		params.add(new BasicNameValuePair("deadline", cjiezhi));
 		params.add(new BasicNameValuePair("title", cbiaoti));
 		params.add(new BasicNameValuePair("time", cshijian));
 		params.add(new BasicNameValuePair("description", cmiaoshu));
+		
+//		params.add(new BasicNameValuePair("limit", yaoqiu));
 		try {
-			/* 发出HTTP request */
 			httpRequest.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-			/* 取得HTTP response */
 			HttpResponse httpResponse = new DefaultHttpClient()
 					.execute(httpRequest);
-			/* 若状态码为200 ok */
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				/* 取出响应字符串 */
 				fanhui = EntityUtils.toString(httpResponse.getEntity());
 			} else {
 				Toast.makeText(getApplicationContext(), "网络错误！",
@@ -159,11 +157,10 @@ public class PublishActivity extends Activity {
 					.show();
 		}
 		try {
-
 			JSONTokener jsonParser = new JSONTokener(fanhui);
 			JSONObject js = (JSONObject) jsonParser.nextValue();
 			// 接下来的就是JSON对象的操作了
-			chenggong = js.getInt("success");
+			success = js.getInt("success");
 		} catch (JSONException ex) {
 			// 异常处理代码
 		}
@@ -174,7 +171,7 @@ public class PublishActivity extends Activity {
 
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				System.out.println(m[arg2]);
+				//
 			}
 
 			public void onNothingSelected(AdapterView<?> arg0) {

@@ -9,6 +9,7 @@ public final class C {
 		public static final String Server			= "http://115.28.238.91:8000/";
 		public static final String login			= Server + "user/login";
 		public static final String actList			= Server + "get/activityByCount";
+		public static final String postAct			= Server + "post/activity";
 		
 //		public static final String logout			= "/index/logout";
 //		public static final String faceView 		= "/image/faceView";

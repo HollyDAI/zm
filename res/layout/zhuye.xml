@@ -40,21 +40,10 @@
         android:layout_width="80sp"
         android:layout_height="50sp"
         android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/zyshezhi"
         android:layout_toRightOf="@+id/zyfaqi"
         android:background="@color/zhuye_xiaoxi"
         android:text="消息"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp" />
-
-    <Button
-        android:id="@+id/zyhaoyou"
-        android:layout_width="80sp"
-        android:layout_height="50sp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/zyshezhi"
-        android:layout_toRightOf="@+id/zyxiaoxi"
-        android:background="@color/zhuye_xiaoxi"
-        android:text="好友"
         android:textColor="#FFFFFF"
         android:textSize="25sp" />
 
