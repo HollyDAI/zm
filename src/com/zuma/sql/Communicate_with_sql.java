@@ -30,7 +30,7 @@ public class Communicate_with_sql {
 			HttpEntity entity = response.getEntity();
 			is = entity.getContent();
 		} catch (Exception e) {
-			Log.e("Communicate with sql error", "httpConnection" + e.toString());
+			Log.e("Communicate error", "httpConnection" + e.toString());
 		}
 
 		try {
@@ -44,7 +44,7 @@ public class Communicate_with_sql {
 			// System.out.println("=====result===========" + result);
 		} catch (Exception e) {
 			// TODO: handle exception
-			Log.e("Communicate with sql convert error",
+			Log.e("Communicate convert error",
 					"Error converting result " + e.toString());
 		} finally {
 			is.close(); // 读完记得一定要关闭
