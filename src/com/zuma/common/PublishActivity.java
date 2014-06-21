@@ -113,7 +113,7 @@ public class PublishActivity extends Activity {
 					b.putString("userToken", userToken);
 					// 此处使用putExtras，接受方就响应的使用getExtra
 					mainIntent.putExtras(b);
-					PublishActivity.this.startActivity(mainIntent);
+					startActivity(mainIntent);
 					finish();
 				} else {
 					Toast.makeText(getApplicationContext(), "消息发布失败(┬＿┬)请重新发布",
