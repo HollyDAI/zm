@@ -1,47 +1,47 @@
 package com.zuma.common;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
-import com.common.zuma.R;
-import com.zuma.base.C.api;
-import com.zuma.syn.GetAcitivityByCountTask;
-import com.zuma.util.MySimpleAdapter;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.common.zuma.R;
+import com.zuma.sql.LoginAction;
+import com.zuma.syn.GetAcitivityByCountTask;
+
 public class HomeActivity extends Activity {
-	private Button faqi, xiaoxi, shezhi, canjia, btn[];
-	private String fanhui;
+
 	private Bundle b;
 	private String userToken;
-	private int renshu, i, j, chenggong, gid[], grenshuxianzhi[], gshijian[],
-			gjiezhishijian[];
-	private String ghuodongming[], gzhushi[];
+	private final static int ITEM_INDEX = 10;
+
+	private Button faqi, xiaoxi, shezhi;
+	// , canjia, btn[];
+	private String fanhui;
+
+	private String strs[] = { "title", "deadline", "numLimit" };
+	private int ids[] = { R.id.zyhuodongming, R.id.zyjiezhishijian,
+			R.id.zyrenshuxianzhi };
+
+	private SimpleAdapter sa;
+	private ListView lv;
+	private List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,9 +51,11 @@ public class HomeActivity extends Activity {
 		b = getIntent().getBundleExtra("idValue");
 		userToken = b.getString("userToken");
 
-		(new GetAcitivityByCountTask()).execute(userToken);
-		ListView list = (ListView) findViewById(R.id.listView2);
+		setupListView();
+		(new GetAcitivityByCountTask()).execute(userToken, sa);
 		
+		System.out.println("=============HomeActivity=============");
+
 		faqi = (Button) findViewById(R.id.zyfaqi);
 		faqi.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -90,5 +92,84 @@ public class HomeActivity extends Activity {
 				HomeActivity.this.startActivity(mainIntent);
 			}
 		});
+
 	}
+
+	public List<Map<String, Object>> getData() {
+		return data;
+	}
+
+	public void setData() {
+		Map<String, Object> map;
+		for (int i = 0; i < ITEM_INDEX; i++) {
+			map = new HashMap<String, Object>();
+			map.put(strs[0], "数据加载中...");
+			map.put(strs[1], "数据加载中...");
+			map.put(strs[2], "数据加载中...");
+			data.add(map);
+		}
+	}
+
+	public void setupListView() {
+
+		setData();
+		setSimpleAdapter();
+		lv = (ListView) findViewById(R.id.listView2);
+		lv.setAdapter(sa);
+		
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		lv.setOnScrollListener(new OnScrollListener() {
+
+			@Override
+			public void onScrollStateChanged(AbsListView arg0, int arg1) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
+	}
+
+	public SimpleAdapter getSimpleAdapter() {
+		return sa;
+	}
+
+	public void setSaToListView() {
+		lv.setAdapter(sa);
+	}
+
+	private void setSimpleAdapter() {
+		// TODO Auto-generated method stub
+		sa = new SimpleAdapter(HomeActivity.this, data, R.layout.list_item,
+				strs, ids);
+
+		sa.setViewBinder(new SimpleAdapter.ViewBinder() {
+
+			@Override
+			public boolean setViewValue(View view, Object data,
+					String textRepresentation) {
+				// TODO Auto-generated method stub
+				// if (view instanceof ImageView && data instanceof Bitmap) {
+				// ImageView iv = (ImageView) view;
+				// iv.setImageBitmap((Bitmap) data);
+				return true;
+				// } else
+				// return false;
+			}
+		});
+	}
+
 }
