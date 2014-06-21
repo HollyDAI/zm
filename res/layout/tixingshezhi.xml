@@ -16,26 +16,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="30dp" />
 
-    <TextView
-        android:id="@+id/txxl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/zyrenshuxianzhi"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="28dp"
-        android:text="响铃"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/txzd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/txxl"
-        android:layout_alignLeft="@+id/txxl"
-        android:layout_marginBottom="42dp"
-        android:text="震动"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <Button
         android:id="@+id/txwancheng"
         android:layout_width="100dp"
@@ -71,12 +51,49 @@
         android:layout_alignLeft="@+id/xiangling" />
 
     <TextView
+        android:id="@+id/txxd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/zcbiaoti"
+        android:layout_below="@+id/zcbiaoti"
+        android:layout_marginTop="30dp"
+        android:text="新消息提醒"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <CheckBox
+        android:id="@+id/xinxiaoxi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txxd"
+        android:layout_alignLeft="@+id/zhendong" />
+
+    <TextView
+        android:id="@+id/txzd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txxd"
+        android:layout_below="@+id/txxd"
+        android:layout_marginTop="32dp"
+        android:text="震动"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/txxl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txzd"
+        android:layout_below="@+id/txzd"
+        android:layout_marginTop="32dp"
+        android:text="响铃"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
         android:id="@+id/txwcl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txxl"
         android:layout_below="@+id/txxl"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="36dp"
         android:text="未处理消息标注"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 

@@ -8,6 +8,7 @@
         android:id="@+id/img"
         android:layout_width="86dp"
         android:layout_height="108dp"
+        android:scaleType="fitXY"
         android:padding="10dp" />
 
     <RelativeLayout
@@ -71,12 +72,20 @@
         <Button
             android:id="@+id/zycanjia"
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:background="#339933"
             android:text="我要参加"
             android:textSize="20dp" />
+
+        <CheckBox
+            android:id="@+id/zyyaoqing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="邀请我们的共同好友" />
 
     </RelativeLayout>
 

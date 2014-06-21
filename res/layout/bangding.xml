@@ -47,26 +47,6 @@
         android:layout_alignTop="@+id/bdyanzheng"
         android:text="重新发送" />
 
-    <Button
-        android:id="@+id/bdqueding"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:background="#339933"
-        android:textSize="25dp"
-        android:layout_alignLeft="@+id/bdyanzheng"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="46dp"
-        android:text="确定" />
-
-    <Button
-        android:id="@+id/bdtiaoguo"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:background="#339933"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/bdqueding"
-        android:layout_alignRight="@+id/bdhuoqu"
-        android:text="跳过" />
     <TextView
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
@@ -78,5 +58,16 @@
         android:text="绑定手机"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/bdqueding"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
+        android:background="#339933"
+        android:text="确定"
+        android:textSize="25dp" />
 
 </RelativeLayout>

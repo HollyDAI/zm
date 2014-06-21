@@ -16,54 +16,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="30sp" />
 
-    <EditText
-        android:id="@+id/fqbiaoti"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_alignLeft="@+id/fqnan"
-        android:layout_alignRight="@+id/fqrenshu"
-        android:layout_centerVertical="true"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="发起活动标题" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/fqnan"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_above="@+id/fqbiaoti"
-        android:layout_alignLeft="@+id/szbiaoti"
-        android:layout_marginBottom="18dp"
-        android:background="#FFFFFF"
-        android:hint="男" />
-
-    <Spinner
-        android:id="@+id/infoTypeSpinner"
-        android:layout_width="130dp"
-        android:layout_height="40dp"
-        android:layout_above="@id/fqnan" >
-    </Spinner>
-    
-    <EditText
-        android:id="@+id/fqmiaoshu"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_above="@+id/fqfabu"
-        android:layout_alignLeft="@+id/fqshijian"
-        android:layout_alignRight="@+id/fqbiaoti"
-        android:layout_below="@+id/fqshijian"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="24dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:gravity="left|top"
-        android:hint="活动详细说明及对参与者的要求"
-        android:inputType="textMultiLine"
-        android:minLines="6" />
-
     <Button
         android:id="@+id/fqfabu"
         android:layout_width="100dp"
@@ -76,49 +28,80 @@
         android:textSize="23sp" />
 
     <EditText
-        android:id="@+id/fqjiezhi"
-        android:layout_width="140dp"
-        android:layout_height="40dp"
-        android:layout_alignBaseline="@+id/fqnv"
-        android:layout_alignBottom="@+id/fqnv"
-        android:layout_alignRight="@+id/fqbiaoti"
+        android:id="@+id/fqbiaoti"
+        android:layout_width="wrap_content"
+        android:layout_height="40sp"
+        android:hint="发起活动标题"
         android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="截止日期" />
+        android:layout_alignLeft="@+id/szbiaoti"
+        android:layout_below="@+id/szbiaoti"
+        android:layout_marginTop="16dp"
+        android:ems="10" >
 
-    <EditText
-        android:id="@+id/fqnv"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_alignBaseline="@+id/fqnan"
-        android:layout_alignBottom="@+id/fqnan"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/fqnan"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="女" />
-
-    <EditText
-        android:id="@+id/fqrenshu"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_above="@+id/fqjiezhi"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="18dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="人数限制" />
+        <requestFocus />
+    </EditText>
 
     <EditText
         android:id="@+id/fqshijian"
-        android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_width="120sp"
+        android:layout_height="40sp"
+        android:hint="活动时间"
+        android:background="#FFFFFF"
         android:layout_alignLeft="@+id/fqbiaoti"
         android:layout_below="@+id/fqbiaoti"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="19dp"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/fqjiezhi"
+        android:layout_width="120sp"
+        android:layout_height="40sp"
+        android:hint="截止日期"
         android:background="#FFFFFF"
+        android:layout_alignBaseline="@+id/fqshijian"
+        android:layout_alignBottom="@+id/fqshijian"
+        android:layout_marginLeft="28dp"
+        android:layout_toRightOf="@+id/fqshijian"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/fqrenshu"
+        android:layout_width="120sp"
+        android:layout_height="40sp"
+        android:hint="人数限制"
+        android:background="#FFFFFF"
+        android:layout_alignLeft="@+id/fqshijian"
+        android:layout_below="@+id/fqshijian"
+        android:layout_marginTop="21dp"
+        android:layout_toLeftOf="@+id/fqjiezhi"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/fqyaoqiu"
+        android:layout_width="wrap_content"
+        android:layout_height="60sp"
+        android:hint="人员要求"
+        android:background="#FFFFFF"
+        android:layout_alignLeft="@+id/fqrenshu"
+        android:layout_alignRight="@+id/fqjiezhi"
+        android:layout_below="@+id/fqrenshu"
+        android:layout_marginTop="21dp"
         android:ems="10"
-        android:hint="活动时间" />
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/fqmiaoshu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="活动详细说明"
+        android:background="#FFFFFF"
+        android:layout_above="@+id/fqfabu"
+        android:layout_alignLeft="@+id/fqyaoqiu"
+        android:layout_alignRight="@+id/fqyaoqiu"
+        android:layout_below="@+id/fqyaoqiu"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="10sp"
+        android:ems="10"
+        android:inputType="textMultiLine" />
 
 </RelativeLayout>

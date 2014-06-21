@@ -54,21 +54,21 @@ public class PublishActivity extends Activity {
 		fabu = (Button) findViewById(R.id.fqfabu);
 		fabu.setOnClickListener(new fabuListener());
 
-		spinner = (Spinner) findViewById(R.id.infoTypeSpinner);
+		//spinner = (Spinner) findViewById(R.id.infoTypeSpinner);
 		//将可选内容与ArrayAdapter连接起来
-		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,m);
+		//adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,m);
 		
 		//设置下拉列表的风格
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		//adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		
 		//将adapter 添加到spinner中
-		spinner.setAdapter(adapter);
+		//spinner.setAdapter(adapter);
 		
 		//添加事件Spinner事件监听  
 //		spinner.setOnItemSelectedListener(new SpinnerSelectedListener());
 		
 		//设置默认值
-		spinner.setVisibility(View.VISIBLE);
+		//spinner.setVisibility(View.VISIBLE);
 	}
 
 	class fabuListener implements OnClickListener {
@@ -81,8 +81,6 @@ public class PublishActivity extends Activity {
 			biaoti = (EditText) findViewById(R.id.fqbiaoti);
 			shijian = (EditText) findViewById(R.id.fqshijian);
 			miaoshu = (EditText) findViewById(R.id.fqmiaoshu);
-			nan = (EditText) findViewById(R.id.fqnan);
-			nv = (EditText) findViewById(R.id.fqnv);
 			crenshu = renshu.getText().toString();
 			cjiezhi = jiezhi.getText().toString();
 			cbiaoti = biaoti.getText().toString();

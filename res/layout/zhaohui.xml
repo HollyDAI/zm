@@ -4,51 +4,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/beijing" >
 
-    <EditText
-        android:id="@+id/zhmima"
-        android:layout_width="160dp"
-        android:layout_height="40dp"
-        android:layout_alignBaseline="@+id/zhxuehao"
-        android:layout_alignBottom="@+id/zhxuehao"
-        android:layout_marginLeft="28dp"
-        android:layout_toRightOf="@+id/zhxuehao"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="教务系统登录密码" />
-
-    <EditText
-        android:id="@+id/zhyanzheng"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:hint="验证码"
-        android:background="#FFFFFF"
-        android:layout_alignLeft="@+id/zhshouji"
-        android:layout_alignRight="@+id/zhshouji"
-        android:layout_below="@+id/zhshouji"
-        android:layout_marginTop="43dp"
-        android:ems="10" />
-
-    <Button
-        android:id="@+id/zhhuoqu"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_alignBaseline="@+id/zhshouji"
-        android:layout_alignBottom="@+id/zhshouji"
-        android:layout_alignRight="@+id/zhmima"
-        android:background="#339933"
-        android:text="获取验证码"
-        android:textSize="20dp" />
-
-    <Button
-        android:id="@+id/zhchongfa"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_alignBaseline="@+id/zhyanzheng"
-        android:layout_alignBottom="@+id/zhyanzheng"
-        android:layout_alignRight="@+id/zhmima"
-        android:background="#339933"
-        android:text="重新发送"
-        android:textSize="25dp" />
     <TextView
         android:id="@+id/zcbiaoti"
         android:layout_width="wrap_content"
@@ -61,16 +16,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="30dp" />
 
-    <EditText
-        android:id="@+id/zhshouji"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_alignLeft="@+id/zhxuehao"
-        android:layout_centerVertical="true"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="手机号码" />
-
     <Button
         android:id="@+id/zhqueding"
         android:layout_width="100dp"
@@ -82,15 +27,64 @@
         android:text="确定"
         android:textSize="25dp" />
 
-    <EditText
-        android:id="@+id/zhxuehao"
-        android:layout_width="100dp"
+    <Button
+        android:id="@+id/zhchongfa"
+        android:layout_width="120dp"
         android:layout_height="40dp"
-        android:layout_above="@+id/zhhuoqu"
+        android:layout_alignBaseline="@+id/zhyanzheng"
+        android:layout_alignBottom="@+id/zhyanzheng"
+        android:layout_alignLeft="@+id/zhhuoqu"
+        android:background="#339933"
+        android:layout_marginRight="20sp"
+        android:text="重新发送"
+        android:textSize="25dp" />
+
+    <EditText
+        android:id="@+id/zhshouji"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/zcbiaoti"
-        android:layout_marginBottom="38dp"
+        android:layout_below="@+id/zcbiaoti"
+        android:layout_marginTop="28dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="学号" />
+        android:hint="手机号码" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/zhhuoqu"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/fqbiaoti"
+        android:background="#339933"
+        android:layout_marginRight="20sp"
+        android:text="获取验证码"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/fqbiaoti"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/zhshouji"
+        android:layout_below="@+id/zhshouji"
+        android:layout_marginTop="38dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="用户名" />
+
+    <EditText
+        android:id="@+id/zhyanzheng"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/fqbiaoti"
+        android:layout_alignRight="@+id/fqbiaoti"
+        android:layout_below="@+id/fqbiaoti"
+        android:layout_marginTop="38dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="验证码" />
 
 </RelativeLayout>

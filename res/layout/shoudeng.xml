@@ -15,16 +15,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="30dp" />
 
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/zyrenshuxianzhi"
-        android:layout_below="@+id/zyrenshuxianzhi"
-        android:layout_marginTop="25dp"
-        android:textSize="20dp"
-        android:text="请选择你的关注" />
-
     <Button
         android:id="@+id/sdwancheng"
         android:layout_width="100dp"
@@ -37,104 +27,13 @@
         android:layout_marginRight="15dp"
         android:text="完成" />
 
-    <ScrollView
-        android:id="@+id/xx2nv"
+    <TextView
+        android:id="@+id/sdjieshao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/sdwancheng"
-        android:layout_alignLeft="@+id/tv1"
-        android:layout_alignRight="@+id/sdwancheng"
-        android:layout_below="@+id/tv1"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="80dp"
-                android:gravity="center" >
-
-                <Button
-                    android:id="@+id/sddianying"
-                    android:layout_width="90dp"
-                    android:layout_height="70dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:textSize="25dp"
-                    android:textColor="#FFFFFF"
-                    android:background="#007799"
-                    android:text="旅行" />
-
-                <Button
-                    android:id="@+id/sdmeishi"
-                    android:layout_width="90dp"
-                    android:layout_height="70dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/sddianying"
-                    android:textSize="25dp"
-                    android:textColor="#FFFFFF"
-                    android:background="#CC0000"
-                    android:text="娱乐" />
-
-                <Button
-                    android:id="@+id/sdxueshu"
-                    android:layout_width="90dp"
-                    android:layout_height="70dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/sdmeishi"
-                    android:textSize="25dp"
-                    android:textColor="#FFFFFF"
-                    android:background="#FF8800"
-                    android:text="体育" />
-
-                </RelativeLayout>
-                <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center" >
-
-                <Button
-                    android:id="@+id/sddianying"
-                    android:layout_width="90dp"
-                    android:layout_height="70dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:textSize="25dp"
-                    android:textColor="#FFFFFF"
-                    android:background="#8C0044"
-                    android:text="电影" />
-
-                <Button
-                    android:id="@+id/sdmeishi"
-                    android:layout_width="90dp"
-                    android:layout_height="70dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/sddianying"
-                    android:textSize="25dp"
-                    android:textColor="#FFFFFF"
-                    android:background="#FFFF33"
-                    android:text="美食" />
-
-                <Button
-                    android:id="@+id/sdxueshu"
-                    android:layout_width="90dp"
-                    android:layout_height="70dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/sdmeishi"
-                    android:textSize="25dp"
-                    android:textColor="#FFFFFF"
-                    android:background="#003377"
-                    android:text="学术" />
-
-                </RelativeLayout>
-
-        </LinearLayout>
-        
-    </ScrollView>
+        android:layout_alignLeft="@+id/zcbiaoti"
+        android:layout_below="@+id/zcbiaoti"
+        android:layout_marginTop="18dp"
+        android:text="TextView" />
 
 </RelativeLayout>
