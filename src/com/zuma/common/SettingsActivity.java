@@ -8,56 +8,60 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class SettingsActivity extends Activity {
 	private Button geren, bangding, tuichu, genggai, tixing, yijian;
-	private String yonghu;
+	private String userToken;
+	private Bundle b = new Bundle();
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.shezhi);
-		yonghu = getIntent().getExtras().getString("userToken");
+		
 		geren = (Button) findViewById(R.id.szgeren);
 		bangding = (Button) findViewById(R.id.szshouji);
 		tuichu = (Button) findViewById(R.id.sztuichu);
 		genggai = (Button) findViewById(R.id.szgenggai);
 		tixing = (Button) findViewById(R.id.sztixing);
 		yijian = (Button) findViewById(R.id.szyijian);
+		
+
+		b = getIntent().getBundleExtra("idValue");
+		userToken = b.getString("userToken");
+		
 		geren.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent mainIntent = new Intent(SettingsActivity.this, PersonalCenterActivity.class);
-				Bundle b = new Bundle();
-				b.putString("userToken", yonghu);
-				// 此处使用putExtras，接受方就响应的使用getExtra
-				mainIntent.putExtras(b);
+				b.putString("userToken", userToken);
+				mainIntent.putExtra("idValue",b);
 				SettingsActivity.this.startActivity(mainIntent);
 			}
 		});
 		bangding.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent mainIntent = new Intent(SettingsActivity.this, BindPhoneActivity.class);
-				Bundle b = new Bundle();
-				b.putString("userToken", yonghu);
-				// 此处使用putExtras，接受方就响应的使用getExtra
-				mainIntent.putExtras(b);
+				b.putString("userToken", userToken);
+				mainIntent.putExtra("idValue",b);
 				SettingsActivity.this.startActivity(mainIntent);
 			}
 		});
 		tuichu.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent mainIntent = new Intent(SettingsActivity.this, HomeActivity.class);
+				Intent mainIntent = new Intent(SettingsActivity.this, MainActivity.class);
+				b.putString("userToken", userToken);
+				mainIntent.putExtra("idValue",b);
 				SettingsActivity.this.startActivity(mainIntent);
 				SettingsActivity.this.finish();
+				Toast.makeText(getApplicationContext(), "退出登录！", Toast.LENGTH_SHORT).show();
 			}
 		});
 		genggai.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent mainIntent = new Intent(SettingsActivity.this, ResetPwdActivity.class);
-				Bundle b = new Bundle();
-				b.putString("userToken", yonghu);
-				// 此处使用putExtras，接受方就响应的使用getExtra
-				mainIntent.putExtras(b);
+				b.putString("userToken", userToken);
+				mainIntent.putExtra("idValue",b);
 				SettingsActivity.this.startActivity(mainIntent);
 				SettingsActivity.this.finish();
 			}
@@ -65,16 +69,16 @@ public class SettingsActivity extends Activity {
 		tixing.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent mainIntent = new Intent(SettingsActivity.this, AlertSettingsActivity.class);
+				b.putString("userToken", userToken);
+				mainIntent.putExtra("idValue",b);
 				SettingsActivity.this.startActivity(mainIntent);
 			}
 		});
 		yijian.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent mainIntent = new Intent(SettingsActivity.this, FeedbackActivity.class);
-				Bundle b = new Bundle();
-				b.putString("userToken", yonghu);
-				// 此处使用putExtras，接受方就响应的使用getExtra
-				mainIntent.putExtras(b);
+				b.putString("userToken", userToken);
+				mainIntent.putExtra("idValue",b);
 				SettingsActivity.this.startActivity(mainIntent);
 				finish();
 			}

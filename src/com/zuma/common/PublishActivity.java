@@ -36,14 +36,14 @@ public class PublishActivity extends Activity {
 	private Bundle b;
 	private String userToken;
 
-	private String climit, fanhui, crenshu, cjiezhi, cbiaoti, cshijian,
+	private String climit, crenshu, cjiezhi, cbiaoti, cshijian,
 			cmiaoshu;
 	private int success;
 	private EditText renshu, jiezhi, biaoti, shijian, miaoshu, limit;
 	private Button fabu;
 	// private static final String[] m = { "学术", "美食", "体育", "旅行", "娱乐",
 	// "其他" };
-	private Spinner spinner;
+//	private Spinner spinner;
 	private ArrayAdapter<String> adapter;
 
 	protected void onCreate(Bundle savedInstanceState) {

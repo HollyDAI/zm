@@ -67,7 +67,7 @@
         android:layout_marginTop="15dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="密码" />
+        android:hint="年级" />
 
     <EditText
         android:id="@+id/wsxueyuan"

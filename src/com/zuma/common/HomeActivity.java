@@ -40,7 +40,6 @@ public class HomeActivity extends Activity {
 	private int id, numLimit, state, ownerId, maleLimit, femaleLimit;
 	private Button faqi, xiaoxi, shezhi;
 	// , canjia, btn[];
-	private String fanhui;
 	private String title, desc, proposeTime, deadLine;
 	private Communicate_with_sql sql = new Communicate_with_sql();
 	

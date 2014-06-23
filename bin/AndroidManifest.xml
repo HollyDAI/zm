@@ -35,6 +35,18 @@
             android:name="com.zuma.common.PublishActivity"></activity>
         <activity 
             android:name="com.zuma.common.SettingsActivity"></activity>
+        <activity 
+            android:name="com.zuma.common.PersonalCenterActivity"></activity>
+        <activity 
+            android:name="com.zuma.common.BindPhoneActivity"></activity>
+        <activity 
+            android:name="com.zuma.common.ResetPwdActivity"></activity>
+        <activity 
+            android:name="com.zuma.common.MessageDetailActivity"></activity>
+        <activity 
+            android:name="com.zuma.common.FeedbackActivity"></activity>
+        <activity 
+            android:name="com.zuma.common.AlertSettingsActivity"></activity>
     </application>
 
 </manifest>

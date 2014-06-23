@@ -4,5 +4,9 @@
     <string name="app_name">Zuma</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
+	<string name="noFuntion">目前还没有这项功能哦！</string>
+	<string name="setting_success">设置成功！</string>
+	<string name="setting_fail">T_T设置失败！请重新来过。</string>
+	<string name="tucao_success">多谢支持！</string>
+	<string name="tucao_fail">T_T吐槽失败！请重新来过。</string>
 </resources>

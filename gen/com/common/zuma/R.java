@@ -142,19 +142,20 @@ public final class R {
         public static final int fragment=0x7f030004;
         public static final int list_item=0x7f030005;
         public static final int list_item2=0x7f030006;
-        public static final int shedingmima=0x7f030007;
-        public static final int shezhi=0x7f030008;
-        public static final int shoudeng=0x7f030009;
-        public static final int tixingshezhi=0x7f03000a;
-        public static final int tucaozhongxin=0x7f03000b;
-        public static final int wanshan=0x7f03000c;
-        public static final int wodehaoyou=0x7f03000d;
-        public static final int xiaoxi1=0x7f03000e;
-        public static final int xiaoxi2=0x7f03000f;
-        public static final int zengjia=0x7f030010;
-        public static final int zhaohui=0x7f030011;
-        public static final int zhuye=0x7f030012;
-        public static final int zuma=0x7f030013;
+        public static final int nofunction=0x7f030007;
+        public static final int shedingmima=0x7f030008;
+        public static final int shezhi=0x7f030009;
+        public static final int shoudeng=0x7f03000a;
+        public static final int tixingshezhi=0x7f03000b;
+        public static final int tucaozhongxin=0x7f03000c;
+        public static final int wanshan=0x7f03000d;
+        public static final int wodehaoyou=0x7f03000e;
+        public static final int xiaoxi1=0x7f03000f;
+        public static final int xiaoxi2=0x7f030010;
+        public static final int zengjia=0x7f030011;
+        public static final int zhaohui=0x7f030012;
+        public static final int zhuye=0x7f030013;
+        public static final int zuma=0x7f030014;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -163,6 +164,11 @@ public final class R {
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
         public static final int hello_world=0x7f060002;
+        public static final int noFuntion=0x7f060003;
+        public static final int setting_fail=0x7f060005;
+        public static final int setting_success=0x7f060004;
+        public static final int tucao_fail=0x7f060007;
+        public static final int tucao_success=0x7f060006;
     }
     public static final class style {
         /** 

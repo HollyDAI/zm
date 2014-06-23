@@ -13,7 +13,7 @@ public class RegisterActivity extends Activity {
 		// TODO Auto-generated method stub
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.wodehaoyou);
+		setContentView(R.layout.shoudeng);
 	}
 	
 }
