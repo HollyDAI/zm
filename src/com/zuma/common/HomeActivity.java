@@ -42,11 +42,11 @@ public class HomeActivity extends Activity {
 	// , canjia, btn[];
 	private String title, desc, proposeTime, deadLine;
 	private Communicate_with_sql sql = new Communicate_with_sql();
-	
+
 	private int success = 0;
-	
+
 	private HashMap<String, Object> map;
-	
+
 	private String strs[] = { "title", "deadline", "numLimit" };
 	private int ids[] = { R.id.zyhuodongming, R.id.zyjiezhishijian,
 			R.id.zyrenshuxianzhi };
@@ -60,10 +60,10 @@ public class HomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.zhuye);
-		
+
 		b = getIntent().getBundleExtra("idValue");
 		userToken = b.getString("userToken");
-		
+
 		faqi = (Button) findViewById(R.id.zyfaqi);
 		faqi.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -71,7 +71,7 @@ public class HomeActivity extends Activity {
 						PublishActivity.class);
 				b.putString("userToken", userToken);
 				// 此处使用putExtras，接受方就响应的使用getExtra
-				mainIntent.putExtra("idValue",b);
+				mainIntent.putExtra("idValue", b);
 				HomeActivity.this.startActivity(mainIntent);
 			}
 		});
@@ -82,7 +82,7 @@ public class HomeActivity extends Activity {
 						MessageListActivity.class);
 				b.putString("userToken", userToken);
 				// 此处使用putExtras，接受方就响应的使用getExtra
-				mainIntent.putExtra("idValue",b);
+				mainIntent.putExtra("idValue", b);
 				HomeActivity.this.startActivity(mainIntent);
 			}
 		});
@@ -93,17 +93,15 @@ public class HomeActivity extends Activity {
 						SettingsActivity.class);
 				b.putString("userToken", userToken);
 				// 此处使用putExtras，接受方就响应的使用getExtra
-				mainIntent.putExtra("idValue",b);
+				mainIntent.putExtra("idValue", b);
 				HomeActivity.this.startActivity(mainIntent);
 			}
 		});
 
-//		(new GetAcitivityTask()).execute();
+		//
 		setupListView();
 
 		System.out.println("=============HomeActivity=============");
-
-		
 
 	}
 
@@ -113,13 +111,13 @@ public class HomeActivity extends Activity {
 
 	public void setData() {
 		Map<String, Object> map;
-		 for (int i = 0; i < ITEM_INDEX; i++) {
-		 map = new HashMap<String, Object>();
-		 map.put(strs[0], "数据加载中...");
-		 map.put(strs[1], "数据加载中...");
-		 map.put(strs[2], "数据加载中...");
-		 ldata.add(map);
-		 }
+		for (int i = 0; i < ITEM_INDEX; i++) {
+			map = new HashMap<String, Object>();
+			map.put(strs[0], "数据加载中...");
+			map.put(strs[1], "数据加载中...");
+			map.put(strs[2], "数据加载中...");
+			ldata.add(map);
+		}
 	}
 
 	public void setupListView() {
@@ -129,11 +127,11 @@ public class HomeActivity extends Activity {
 		setSimpleAdapter();
 		lv.setAdapter(sa);
 
-		for(int i=0;i<ITEM_INDEX;i++){
+		for (int i = 0; i < ITEM_INDEX; i++) {
 			ltask.add(new GetAcitivityTask());
-			ltask.get(i).execute(i,ldata.get(i));
+			ltask.get(i).execute(i, ldata.get(i));
 		}
-		
+
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -164,9 +162,9 @@ public class HomeActivity extends Activity {
 		return sa;
 	}
 
-	public void setSaToListView() {
-		lv.setAdapter(sa);
-	}
+	// public void setSaToListView() {
+	// lv.setAdapter(sa);
+	// }
 
 	private void setSimpleAdapter() {
 		// TODO Auto-generated method stub
@@ -192,22 +190,24 @@ public class HomeActivity extends Activity {
 	public class GetAcitivityTask extends AsyncTask<Object, Object, Integer> {
 
 		private boolean isRunning;
+
 		@Override
 		protected Integer doInBackground(Object... arg0) {
 			// TODO Auto-generated method stub
-			isRunning=true;
+			isRunning = true;
 			String uriAPI = api.actList;
-			String position = (Integer)arg0[0]+"";
+			String position = (Integer) arg0[0] + "";
 			map = (HashMap<String, Object>) arg0[1];
-			
+
 			try {
 				ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-				params.add(new BasicNameValuePair("userToken", userToken.toString()));
+				params.add(new BasicNameValuePair("userToken", userToken
+						.toString()));
 				params.add(new BasicNameValuePair("activityId", position));
 				params.add(new BasicNameValuePair("count", "1"));
-				
-				JSONTokener jsonParser = new JSONTokener(
-						sql.request(uriAPI, params));
+
+				JSONTokener jsonParser = new JSONTokener(sql.request(uriAPI,
+						params));
 				JSONObject js = (JSONObject) jsonParser.nextValue();
 				JSONArray actList = js.getJSONArray("actList");
 
@@ -230,40 +230,39 @@ public class HomeActivity extends Activity {
 				}
 
 				Log.i("Getactivity by count", "success=" + success);
-				Log.i("Getactivity by count", id+title+numLimit+state);
+				Log.i("Getactivity by count", id + title + numLimit + state);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
-				// if (e.getMessage()
-				// .equals("Value Notice of type java.lang.String cannot be converted to JSONArray"))
-				// title = "无更多信息";
-				// else
-				// title = "TAT数据库读取出错啦";
-
 				Log.e("JSON数据错误", e.getMessage());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (Exception e){
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			return success;
 		}
 
-		protected void onPostExecute(int success) {
+		protected void onPostExecute(Integer success) {
 			// TODO Auto-generated method stub
-			map.put("id",id);
-			map.put("title",title);
-			map.put("numLimit",numLimit);
-			map.put("state",state);
-			map.put("ownerId",ownerId);
-			map.put("desc",desc);
-			map.put("proposeTime", proposeTime);
-			map.put("deadLine",deadLine);
-			map.put("maleLimit",maleLimit);
-			map.put("femaleLimit",femaleLimit);
-			
-			sa.notifyDataSetChanged();
-			isRunning=false;
+
+			System.out.println("=======tasktask==========");
+			if (success == 1) {
+				map.put("id", id);
+				map.put("title", title);
+				map.put("numLimit", numLimit);
+				map.put("state", state);
+				map.put("ownerId", ownerId);
+				map.put("desc", desc);
+				map.put("proposeTime", proposeTime);
+				map.put("deadLine", deadLine);
+				map.put("maleLimit", maleLimit);
+				map.put("femaleLimit", femaleLimit);
+				ldata.add(map);
+
+				sa.notifyDataSetChanged();
+				isRunning = false;
+			}
 		}
 	}
 }

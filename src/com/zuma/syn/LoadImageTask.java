@@ -1,152 +1,103 @@
 package com.zuma.syn;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
-import com.zuma.util.ZoomImage;
+import com.zuma.base.C.api;
+import com.zuma.sql.Communicate_with_sql;
 
-import android.graphics.Bitmap;
+
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.SimpleAdapter;
 
-//load image and title,info;
-public class LoadImageTask extends AsyncTask<Object,Object,Bitmap> {
+public class LoadImageTask extends AsyncTask<Object, Object, Integer> {
 
+	@SuppressWarnings("unused")
+	private boolean isRunning;
+
+	private int id, numLimit, state, ownerId, maleLimit, femaleLimit;
+	private String title, desc, proposeTime, deadLine;
+	private int success = 0;
+	
+	private SimpleAdapter sa;
+	private HashMap<String, Object> map;
+	private Communicate_with_sql sql = new Communicate_with_sql();
+
+	@SuppressWarnings("unchecked")
 	@Override
-	protected Bitmap doInBackground(Object... arg0) {
+	protected Integer doInBackground(Object... arg0) {
 		// TODO Auto-generated method stub
-		return null;
+		isRunning = true;
+
+		String uriAPI = api.actList;
+		String position = (Integer)arg0[0]+"";
+		map = (HashMap<String, Object>) arg0[1];
+		
+		try {
+			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("activityId", position));
+			params.add(new BasicNameValuePair("count", "1"));
+			
+			JSONTokener jsonParser = new JSONTokener(
+					sql.request(uriAPI, params));
+			JSONObject js = (JSONObject) jsonParser.nextValue();
+			JSONArray actList = js.getJSONArray("actList");
+
+			if (actList != null && actList.length() > 0) {
+				for (int i = 0; i < actList.length(); i++) {
+					JSONObject jo = actList.getJSONObject(i);
+
+					id = jo.getInt("id");
+					title = jo.getString("title");
+					numLimit = jo.getInt("numLimit");
+					state = jo.getInt("state");
+					ownerId = jo.getInt("ownerId");
+					desc = jo.getString("desc");
+					proposeTime = jo.getString("proposeTime");
+					deadLine = jo.getString("deadLine");
+					maleLimit = jo.getInt("maleLimit");
+					femaleLimit = jo.getInt("femaleLimit");
+				}
+				success = js.getInt("success");
+			}
+
+			Log.i("Getactivity by count", "success=" + success);
+			Log.i("Getactivity by count", id+title+numLimit+state);
+		} catch (JSONException e) {
+			Log.e("JSON数据错误", e.getMessage());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return success;
 	}
 
-//	private boolean isRunning;
-//	private Integer position;
-//	private Integer fragmentid;
-//	
-//	private String pictureurl;
-//	private String title;
-//	private String describe;
-//	private String price;
-//	private String mobile;
-//	
-//	private StringBuilder sb_lxfs=new StringBuilder();
-//	private String lxfs;
-//	
-//	private String chenghu;
-//	private String degree;
-//	
-//	private SimpleAdapter sa;
-//	private HashMap<String,Object> hashmap;
-//	private Communicate_with_mysql cwm;
-//	private JSONArray ja;
-//	
-//	private String line;
-//	private int displaywidth,displayheight;
-//	
-//	@Override
-//	protected Bitmap doInBackground(Object... params) {
-//		// TODO Auto-generated method stub
-//		isRunning=true;
-//		
-//		position=(Integer)params[0];
-//		fragmentid=(Integer)params[1];
-//		
-//	 	sa=(SimpleAdapter)params[2];
-//		hashmap=(HashMap<String,Object>)params[3];
-//	    
-//		displaywidth=(Integer)params[4];
-//		displayheight=(Integer)params[5];
-//		
-//		cwm=new Communicate_with_mysql();
-//		
-//		
-//		try {
-//			ja=new JSONArray((line=cwm.request(position,fragmentid)));
-//			if(ja!=null&&ja.length()>0){
-//			for(int i=0;i<ja.length();i++){
-//				JSONObject jo=ja.getJSONObject(i);
-//				pictureurl="http://imarket.nankai.edu.cn/"+jo.getString("picture");
-//				title=jo.getString("itemname");
-//				mobile = jo.getString("mobile");
-//				describe=jo.getString("detail");
-//				price=jo.getString("price");
-//				chenghu=jo.getString("nickname");
-//				int intdegree=jo.getInt("newold");
-//				    if(intdegree==1)
-//				    	degree="9.9成新";
-//				    if(intdegree==2)
-//				    	degree="9成新";
-//				    if(intdegree==3)
-//				    	degree="8成新";
-//				    if(intdegree==4)
-//				    	degree="7成新";
-//				    if(intdegree==5)
-//				    	degree="7成新以下";
-//				    	
-//				if(!jo.getString("mobile").equals(""))
-//					sb_lxfs.append("电话："+jo.getString("mobile")+"\n");
-//				if(!jo.getString("email").equals(""))
-//					sb_lxfs.append("邮箱："+jo.getString("email")+"\n");
-//				if(!jo.getString("qq").equals(""))
-//					sb_lxfs.append("QQ: "+jo.getString("qq"));
-//				lxfs=sb_lxfs.toString();
-//				
-//			}
-//		  }
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			pictureurl=null;
-//			title="无法连接数据库";
-//			describe=e.getMessage();
-//			if(e.getMessage().equals("Value <br of type java.lang.String cannot be converted to JSONArray"))
-//				describe="无更多商品";
-//			price="无法连接数据库";
-//			mobile = "无法连接数据库";
-//			lxfs="无法连接数据库";
-//			chenghu="无法连接数据库";
-//			degree="无法连接数据库";
-//			Log.e("看JSON数据错误", e.getMessage());
-//		}	
-//		
-//		
-//		Bitmap bitmap=ZoomImage.loadWebImage(pictureurl, displaywidth, displayheight);
-//	    if(bitmap!=null)
-//		  return bitmap;
-//	    else
-//	    	return null;
-//	}
-//	
-//	@Override
-//	protected void onPostExecute(Bitmap result){
-//		
-//		hashmap.remove("title");
-//		hashmap.remove("describe");
-//		hashmap.remove("mobile");
-//		hashmap.remove("price");
-//		
-//		if(!title.equals("无法连接数据库")){
-//			hashmap.put("title",title);
-//			hashmap.put("describe", describe);
-//			hashmap.put("price", price);
-//			hashmap.put("mobile", mobile);
-//			hashmap.put("lxfs", lxfs);
-//			hashmap.put("chenghu", chenghu);
-//			hashmap.put("degree", degree);
-//		
-//			if(result!=null){
-//				hashmap.remove("img");
-//				hashmap.put("img", result);
-//			}
-//			
-//		}
-//		else
-//			if(result==null)
-//				hashmap.remove("img");
-//		sa.notifyDataSetChanged();
-//	    isRunning=false;
-//	}
+	protected void onPostExecute(int success) {
+
+		map.put("id",id);
+		map.put("title",title);
+		map.put("numLimit",numLimit);
+		map.put("state",state);
+		map.put("ownerId",ownerId);
+		map.put("desc",desc);
+		map.put("proposeTime", proposeTime);
+		map.put("deadLine",deadLine);
+		map.put("maleLimit",maleLimit);
+		map.put("femaleLimit",femaleLimit);
+		
+		sa.notifyDataSetChanged();
+		isRunning=false;
+	}
 
 }

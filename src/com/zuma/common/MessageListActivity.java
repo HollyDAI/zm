@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.security.auth.PrivateCredentialPermission;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -20,15 +22,21 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import com.common.zuma.R;
+import com.zuma.base.C.api;
+import com.zuma.sql.Communicate_with_sql;
 import com.zuma.util.MySimpleAdapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -38,26 +46,31 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
 public class MessageListActivity extends Activity {
-	String fanhui, yonghu, ghuodongming[], cid, chuodongid;
+	private String userToken = null;
+	private Bundle b = null;
+	String fanhui, ghuodongming[], cid, chuodongid;
 	int i, j, gxiaoxishu[], gid[], id, chenggong, ghuodongid[];
-	ArrayList<HashMap<String, Object>> mylist = buildList();
+	ArrayList<HashMap<String, Object>> mylist = null;
+	ListView list = null;
+	MySimpleAdapter mSchedule = null;
+	private ProgressDialog pd = null;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.xiaoxi1);
-		yonghu = getIntent().getExtras().getString("userToken");
-		/* shuju(); */
-		final ListView list = (ListView) findViewById(R.id.listView1);
-		final MySimpleAdapter mSchedule = new MySimpleAdapter(this, // 没什么解释
-				mylist,// 数据来源
-				R.layout.list_item2,// ListItem的XML实现
-				// 动态数组与ListItem对应的子项
-				new String[] { "huodongming", "xiaoxishu" },
-				// ListItem的XML文件里面的两个TextView ID
-				new int[] { R.id.xxhuodongming, R.id.xxxiaoxishu });
-
-		list.setAdapter(mSchedule);
+		list = (ListView) findViewById(R.id.listView1);
+		
+		b = getIntent().getBundleExtra("idValue");
+		userToken = b.getString("userToken");
+		
+		pd = new ProgressDialog(MessageListActivity.this);
+		pd.setTitle("请稍等");
+		pd.setMessage("正在读取...");
+		
+		pd.show();
+		new Thread(run).start();
+		
 		list.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -65,9 +78,10 @@ public class MessageListActivity extends Activity {
 					long arg3) {
 				cid = gid[arg2] + "";
 				chuodongid = ghuodongid[arg2] + "";
-				Intent mainIntent = new Intent(MessageListActivity.this, MessageDetailActivity.class);
+				Intent mainIntent = new Intent(MessageListActivity.this,
+						MessageDetailActivity.class);
 				Bundle b = new Bundle();
-				b.putString("userToken", yonghu);
+				b.putString("userToken", userToken);
 				b.putString("id", cid);
 				b.putString("huodongid", chuodongid);
 				// 此处使用putExtras，接受方就响应的使用getExtra
@@ -75,12 +89,14 @@ public class MessageListActivity extends Activity {
 				MessageListActivity.this.startActivity(mainIntent);
 			}
 		});
+		
 		list.setOnItemLongClickListener(new OnItemLongClickListener() { // 和大神商议
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
 					final int arg2, long arg3) {
 				// TODO Auto-generated method stub
-				AlertDialog.Builder builder = new Builder(MessageListActivity.this);
+				AlertDialog.Builder builder = new Builder(
+						MessageListActivity.this);
 				builder.setMessage("确认删除此条目吗？");
 				builder.setPositiveButton("确认", new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
@@ -119,57 +135,79 @@ public class MessageListActivity extends Activity {
 
 	}
 
-	public void shuju() {
-		String uriAPI = "http://192.168.32.5:8000/message/list?userToken="
-				+ yonghu;
-		/* 建立HTTP Post联机 */
-		HttpPost httpRequest = new HttpPost(uriAPI);
-		/*
-		 * Post运作传送变量必须用NameValuePair[]数组储存
-		 */
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("userToken", yonghu));
-		try {
-			/* 发出HTTP request */
-			httpRequest.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-			/* 取得HTTP response */
-			HttpResponse httpResponse = new DefaultHttpClient()
-					.execute(httpRequest);
-			/* 若状态码为200 ok */
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				/* 取出响应字符串 */
-				fanhui = EntityUtils.toString(httpResponse.getEntity());
-			} else {
-				Toast.makeText(getApplicationContext(), "网络错误！",
-						Toast.LENGTH_SHORT).show();
+	Runnable run = new Runnable() {
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			Message msg = new Message();
+			System.out.println("===========runnable===========");
+			String uriAPI = api.getNews;
+			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("userToken", userToken));
+			Communicate_with_sql sql = new Communicate_with_sql();
+			try {
+				JSONTokener jsonParser = new JSONTokener(
+						sql.request(uriAPI, params));
+				JSONObject js = (JSONObject) jsonParser.nextValue();
+				JSONArray newsList = js.getJSONArray("newsList");
+				if (newsList != null && newsList.length() > 0) {
+					for (i = 0; i < newsList.length(); i++) {
+						
+						//命名有误
+						gid[i] = newsList.getJSONObject(i).getInt("id");
+						ghuodongming[i] = newsList.getJSONObject(i)
+								.getString("fromId");
+						gxiaoxishu[i] = newsList.getJSONObject(i).getInt("creatime");
+						ghuodongid[i] = newsList.getJSONObject(i)
+								.getInt("newsId");
+					}
+					chenggong = js.getInt("success");
+				}else{
+					chenggong = -1;
+				}
+			} catch (JSONException ex) {
+				// 异常处理代码
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (ClientProtocolException e) {
-			Toast.makeText(getApplicationContext(), "网络错误！", Toast.LENGTH_SHORT)
-					.show();
-		} catch (IOException e) {
-			Toast.makeText(getApplicationContext(), "网络错误！", Toast.LENGTH_SHORT)
-					.show();
-		} catch (Exception e) {
-			Toast.makeText(getApplicationContext(), "网络错误！", Toast.LENGTH_SHORT)
-					.show();
+			Bundle b = new Bundle();
+			b.putInt("success", chenggong);
+			msg.setData(b);
+			handler.sendMessage(msg);
 		}
-		try {
+	}; 
+	
+	Handler handler = new Handler(){
 
-			JSONTokener jsonParser = new JSONTokener(fanhui);
-			JSONObject js = (JSONObject) jsonParser.nextValue();
-			// 接下来的就是JSON对象的操作了
-			JSONArray numberList = js.getJSONArray("messages");
-			for (i = 1; i < numberList.length(); i++) {
-				gid[i] = numberList.getJSONObject(i).getInt("id");
-				ghuodongming[i] = numberList.getJSONObject(i)
-						.getString("title");
-				gxiaoxishu[i] = numberList.getJSONObject(i).getInt("new");
-				ghuodongid[i] = numberList.getJSONObject(i)
-						.getInt("activityId");
+		@SuppressLint("HandlerLeak")
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			super.handleMessage(msg);
+			System.out.println("========handler=======");
+			Bundle data = msg.getData();
+			if(data.getInt("success")==1){
+				mylist = buildList();
+				mSchedule =  new MySimpleAdapter(getApplicationContext(),
+						mylist,// 数据来源
+						R.layout.list_item2,// ListItem的XML实现
+						// 动态数组与ListItem对应的子项
+						new String[] { "huodongming", "xiaoxishu" },
+						// ListItem的XML文件里面的两个TextView ID
+						new int[] { R.id.xxhuodongming, R.id.xxxiaoxishu });
+
+				list.setAdapter(mSchedule);
+				pd.dismiss();
+			}else if(data.getInt("success")==-1){
+				Toast.makeText(getApplicationContext(), "当前消息列表为空！", Toast.LENGTH_LONG).show();
+				pd.dismiss();
+			}else if(data.getInt("success")==0){
+				Toast.makeText(getApplicationContext(), "读取失败！", Toast.LENGTH_LONG).show();
+				pd.dismiss();
 			}
-			chenggong = js.getInt("success");
-		} catch (JSONException ex) {
-			// 异常处理代码
 		}
-	}
+		
+	};
 }

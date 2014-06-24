@@ -44,7 +44,7 @@ public class MySimpleAdapter extends SimpleAdapter {
     private LayoutInflater mInflater;
     String fanhui;
     int chenggong;
-	
+
 	public MySimpleAdapter(Context context,
 			List<? extends Map<String, ?>> data, int resource, String[] from,
 			int[] to) {
@@ -55,8 +55,8 @@ public class MySimpleAdapter extends SimpleAdapter {
         mTo = to;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
-	
-	
+
+
 	 /**
      * @see android.widget.Adapter#getView(int, View, ViewGroup)
      */

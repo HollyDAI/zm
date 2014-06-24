@@ -12,7 +12,7 @@ public final class C {
 		public static final String postAct			= Server + "post/activity";
 		public static final String usernameCheck    = Server + "user/usernameCheck";
 		public static final String register         = Server + "user/register";
-		
+		public static final String getNews          = Server + "get/news";
 		
 	}
 	

@@ -58,7 +58,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/wsmima"
+        android:id="@+id/wsxuexiao"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_alignLeft="@+id/wsnicheng"
@@ -67,15 +67,15 @@
         android:layout_marginTop="15dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="密码" />
+        android:hint="学校" />
 
     <EditText
         android:id="@+id/wsxueyuan"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_alignLeft="@+id/wsmima"
-        android:layout_alignRight="@+id/wsmima"
-        android:layout_below="@+id/wsmima"
+        android:layout_alignLeft="@+id/wsxuexiao"
+        android:layout_alignRight="@+id/wsxuexiao"
+        android:layout_below="@+id/wsxuexiao"
         android:layout_marginTop="18dp"
         android:background="#FFFFFF"
         android:ems="10"

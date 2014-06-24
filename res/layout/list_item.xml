@@ -38,8 +38,7 @@
             android:layout_alignBaseline="@+id/zyrenshuxianzhi"
             android:layout_alignBottom="@+id/zyrenshuxianzhi"
             android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/zyrenshuxianzhi"
-            android:text="TextView" />
+            android:layout_toRightOf="@+id/zyrenshuxianzhi" />
 
         <TextView
             android:id="@+id/zyzhushi"
@@ -47,16 +46,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/zyrenshuxianzhi"
-            android:text="TextView" />
+            android:layout_below="@+id/zyrenshuxianzhi" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/zyzhushi"
-            android:text="截止时间：" />
+            android:layout_below="@+id/zyzhushi" />
 
         <TextView
             android:id="@+id/zyjiezhishijian"
@@ -64,8 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView5"
             android:layout_alignBottom="@+id/textView5"
-            android:layout_toRightOf="@+id/textView5"
-            android:text="TextView" />
+            android:layout_toRightOf="@+id/textView5" />
 
         <Button
             android:id="@+id/zycanjia"
@@ -77,13 +73,13 @@
             android:text="我要参加"
             android:textSize="20dp" />
 
-        <CheckBox
-            android:id="@+id/zyyaoqing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:text="邀请我们的共同好友" />
+<!--         <CheckBox -->
+<!--             android:id="@+id/zyyaoqing" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_alignParentBottom="true" -->
+<!--             android:layout_alignParentLeft="true" -->
+<!--             android:text="邀请我们的共同好友" /> -->
 
     </RelativeLayout>
 
