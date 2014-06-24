@@ -118,11 +118,11 @@ public class PublishActivity extends Activity {
 					Toast.makeText(PublishActivity.this, "消息发布成功啦！",
 							Toast.LENGTH_LONG).show();
 					Intent mainIntent = new Intent(PublishActivity.this,
-							MessageListActivity.class);
+							HomeActivity.class);
 					Bundle b = new Bundle();
 					b.putString("userToken", userToken);
 					// 此处使用putExtras，接受方就响应的使用getExtra
-					mainIntent.putExtras(b);
+					mainIntent.putExtra("idValue",b);
 					startActivity(mainIntent);
 					finish();
 				} else {

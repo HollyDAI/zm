@@ -33,7 +33,7 @@ public final class R {
     }
     public static final class id {
         public static final int ScrollView01=0x7f09005b;
-        public static final int action_settings=0x7f09006b;
+        public static final int action_settings=0x7f09006e;
         public static final int bdchongfa=0x7f090003;
         public static final int bdhuoqu=0x7f090000;
         public static final int bdqueding=0x7f090005;
@@ -47,12 +47,12 @@ public final class R {
         public static final int cyxueyuanming=0x7f090008;
         public static final int cyzhuanye=0x7f090009;
         public static final int cyzhuanyeming=0x7f09000a;
-        public static final int dlmima=0x7f090067;
-        public static final int dlqueding=0x7f090068;
-        public static final int dltouxiang=0x7f090065;
-        public static final int dlyonghuming=0x7f090066;
-        public static final int dlzhaohui=0x7f090069;
-        public static final int dlzhuce=0x7f09006a;
+        public static final int dlmima=0x7f09006a;
+        public static final int dlqueding=0x7f09006b;
+        public static final int dltouxiang=0x7f090068;
+        public static final int dlyonghuming=0x7f090069;
+        public static final int dlzhaohui=0x7f09006c;
+        public static final int dlzhuce=0x7f09006d;
         public static final int fqbiaoti=0x7f090010;
         public static final int fqfabu=0x7f09000f;
         public static final int fqjiezhi=0x7f090012;
@@ -67,7 +67,7 @@ public final class R {
         public static final int img=0x7f090017;
         public static final int linearLayout1=0x7f090049;
         public static final int listView1=0x7f09004c;
-        public static final int listView2=0x7f090063;
+        public static final int listView2=0x7f090066;
         public static final int nanlayout=0x7f09005a;
         public static final int nvlayout=0x7f090057;
         public static final int regmima=0x7f090027;
@@ -108,6 +108,8 @@ public final class R {
         public static final int wsxuexiao=0x7f090045;
         public static final int wsxueyuan=0x7f090046;
         public static final int wszhuanye=0x7f090042;
+        public static final int xdbiaoti=0x7f09005c;
+        public static final int xdhaoyoushu=0x7f09005d;
         public static final int xiangling=0x7f090038;
         public static final int xinxiaoxi=0x7f09003d;
         public static final int xx2canjiarenshu=0x7f090050;
@@ -124,21 +126,22 @@ public final class R {
         public static final int xxbiaoti=0x7f09004b;
         public static final int xxhuodongming=0x7f09001f;
         public static final int xxxiaoxishu=0x7f090020;
+        public static final int yqbiaoti=0x7f09005e;
         public static final int zcbiaoti=0x7f090022;
-        public static final int zhchongfa=0x7f09005d;
+        public static final int zhchongfa=0x7f090060;
         public static final int zhendong=0x7f090036;
-        public static final int zhhuoqu=0x7f09005f;
-        public static final int zhqueding=0x7f09005c;
-        public static final int zhshouji=0x7f090060;
-        public static final int zhyanzheng=0x7f09005e;
+        public static final int zhhuoqu=0x7f090062;
+        public static final int zhqueding=0x7f09005f;
+        public static final int zhshouji=0x7f090063;
+        public static final int zhyanzheng=0x7f090061;
         public static final int zycanjia=0x7f09001e;
-        public static final int zyfaqi=0x7f090061;
+        public static final int zyfaqi=0x7f090064;
         public static final int zyhuodongming=0x7f090018;
         public static final int zyjiezhishijian=0x7f09001d;
         public static final int zyrenshuxianzhi=0x7f090019;
-        public static final int zyshezhi=0x7f090062;
+        public static final int zyshezhi=0x7f090065;
         public static final int zyshijian=0x7f09001a;
-        public static final int zyxiaoxi=0x7f090064;
+        public static final int zyxiaoxi=0x7f090067;
         public static final int zyzhushi=0x7f09001b;
     }
     public static final class layout {
@@ -160,10 +163,12 @@ public final class R {
         public static final int wodehaoyou=0x7f03000f;
         public static final int xiaoxi1=0x7f030010;
         public static final int xiaoxi2=0x7f030011;
-        public static final int zengjia=0x7f030012;
-        public static final int zhaohui=0x7f030013;
-        public static final int zhuye=0x7f030014;
-        public static final int zuma=0x7f030015;
+        public static final int xindehaoyou=0x7f030012;
+        public static final int yaoqinghuifu=0x7f030013;
+        public static final int zengjia=0x7f030014;
+        public static final int zhaohui=0x7f030015;
+        public static final int zhuye=0x7f030016;
+        public static final int zuma=0x7f030017;
     }
     public static final class menu {
         public static final int main=0x7f080000;
