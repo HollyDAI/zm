@@ -5,7 +5,7 @@
     android:background="@drawable/beijing" >
 
     <Button
-        android:id="@+id/wsqueding"
+        android:id="@+id/regzhuce"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:background="#339933"
@@ -13,7 +13,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="22dp"
-        android:text="确定" />
+        android:text="注册" />
     <TextView
         android:id="@+id/zcbiaoti"
         android:layout_width="wrap_content"
@@ -22,29 +22,21 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="完善我的个人信息"
+        android:text="注册"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
 
     <ImageButton
-        android:id="@+id/wsnan"
+        android:id="@+id/regnan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/wszhuanye"
+        android:layout_below="@+id/regzhuanye"
         android:layout_marginTop="15dp"
-        android:layout_toLeftOf="@+id/wsqueding"
-        android:src="@drawable/ic_launcher" />
-
-    <ImageButton
-        android:id="@+id/wsnv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/wsnan"
-        android:layout_toRightOf="@+id/wsqueding"
+        android:layout_toLeftOf="@+id/regqueding"
         android:src="@drawable/ic_launcher" />
 
     <EditText
-        android:id="@+id/wsnicheng"
+        android:id="@+id/regnicheng"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_alignLeft="@+id/zcbiaoti"
@@ -52,58 +44,53 @@
         android:layout_marginTop="22dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="昵称" >
+        android:hint="*用户名（至少4位且无法修改）" >
 
         <requestFocus />
     </EditText>
 
     <EditText
-        android:id="@+id/wsmima"
+        android:id="@+id/regmima"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_alignLeft="@+id/wsnicheng"
-        android:layout_alignRight="@+id/wsnicheng"
-        android:layout_below="@+id/wsnicheng"
+        android:layout_alignLeft="@+id/regnicheng"
+        android:layout_alignRight="@+id/regnicheng"
+        android:layout_below="@+id/regnicheng"
         android:layout_marginTop="15dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="密码" />
+        android:hint="*密码" />
 
     <EditText
-        android:id="@+id/wsxueyuan"
+        android:id="@+id/regxuexiao"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_alignLeft="@+id/wsmima"
-        android:layout_alignRight="@+id/wsmima"
-        android:layout_below="@+id/wsmima"
+        android:layout_alignLeft="@+id/regmima"
+        android:layout_alignRight="@+id/regmima"
+        android:layout_below="@+id/regmima"
         android:layout_marginTop="18dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="学院" />
+        android:hint="*学校" />
 
     <EditText
-        android:id="@+id/wszhuanye"
+        android:id="@+id/regzhuanye"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_alignLeft="@+id/wsxueyuan"
-        android:layout_alignRight="@+id/wsxueyuan"
-        android:layout_below="@+id/wsxueyuan"
-        android:layout_marginTop="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/regxuexiao"
+        android:layout_marginTop="34dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="专业" />
 
     <ImageButton
-        android:id="@+id/imb"
-        android:layout_width="100dp"
+        android:id="@+id/regnv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/wsxueyuan"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/wsnicheng"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@+id/wsnicheng"
-        android:scaleType="fitXY"
-        android:src="@android:drawable/btn_star" />
+        android:layout_alignLeft="@+id/regzhuce"
+        android:layout_below="@+id/regzhuanye"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/ic_launcher" />
 
 </RelativeLayout>

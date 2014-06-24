@@ -24,19 +24,33 @@ public class MainActivity extends Activity {
 	private Button register = null;
 	private EditText editAccount = null;
 	private EditText editPwd = null;
+	private String account, pwd = null;
 	private ProgressDialog pd = null;
-	
+
+	private Bundle b = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.zuma);
-		
+
 		pd = new ProgressDialog(MainActivity.this);
 		pd.setTitle("请稍等");
 		pd.setMessage("正在登录……");
-		
+
+		if (getIntent().getBundleExtra("reg") != null) {
+			b = getIntent().getBundleExtra("reg");
+			String action = b.getString("action");
+			if (action.equals("reg")) {
+				account = b.getString("username");
+				pwd = b.getString("password");
+				(new DologinTask()).execute(account, pwd);
+			} else {
+
+			}
+
+		}
 		editAccount = (EditText) findViewById(R.id.dlyonghuming);
 		editPwd = (EditText) findViewById(R.id.dlmima);
 		confirm = (Button) findViewById(R.id.dlqueding);
@@ -51,7 +65,9 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onClick(View arg0) {
-			(new DologinTask()).execute(editAccount.getText(),editPwd.getText());
+			account = editAccount.getText().toString();
+			pwd = editPwd.getText().toString();
+			(new DologinTask()).execute(account, pwd);
 		}
 	}
 
@@ -86,12 +102,12 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	/****异步操作****/
+	/**** 异步操作 ****/
 	public class DologinTask extends AsyncTask<Object, Object, Boolean> {
 
 		private Boolean isrunning = true;
-		private Editable username;
-		private Editable password;
+		private String username;
+		private String password;
 
 		@Override
 		protected void onPreExecute() {
@@ -105,8 +121,8 @@ public class MainActivity extends Activity {
 			// TODO Auto-generated method stub
 			// Boolean b = false;
 			while (isrunning) {
-				username = (Editable) arg0[0];
-				password = (Editable) arg0[1];
+				username = (String) arg0[0];
+				password = (String) arg0[1];
 				return LoginAction.isCorrectedUserAndPass(username, password);
 			}
 			return isrunning;
@@ -116,7 +132,8 @@ public class MainActivity extends Activity {
 		protected void onPostExecute(Boolean result) {
 			pd.dismiss();
 			if (result) {
-				Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+				Intent intent = new Intent(MainActivity.this,
+						HomeActivity.class);
 				Bundle b = new Bundle();
 				b.putString("userToken", LoginAction.getuserToken());
 
@@ -124,10 +141,12 @@ public class MainActivity extends Activity {
 				intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 				startActivity(intent);
 				finish();
-				Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT)
+						.show();
 				isrunning = false;
 			} else
-				Toast.makeText(MainActivity.this, "登录失败,请输入正确的用户名、密码", Toast.LENGTH_LONG).show();
+				Toast.makeText(MainActivity.this, "登录失败,请输入正确的用户名、密码",
+						Toast.LENGTH_LONG).show();
 		}
 
 	}

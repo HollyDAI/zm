@@ -13,7 +13,6 @@ import org.json.JSONTokener;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,10 +20,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.common.zuma.R;
@@ -44,7 +41,7 @@ public class PublishActivity extends Activity {
 	// private static final String[] m = { "学术", "美食", "体育", "旅行", "娱乐",
 	// "其他" };
 //	private Spinner spinner;
-	private ArrayAdapter<String> adapter;
+//	private ArrayAdapter<String> adapter;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -81,6 +78,7 @@ public class PublishActivity extends Activity {
 
 	}
 
+	@SuppressLint("HandlerLeak")
 	class fabuListener implements OnClickListener {
 
 		@Override
@@ -94,7 +92,19 @@ public class PublishActivity extends Activity {
 			cmiaoshu = miaoshu.getText().toString();
 			climit = limit.getText().toString();
 
-			new Thread(runnable).start();
+			if(cbiaoti.equals("")){
+				Toast.makeText(getApplicationContext(), "请填入标题！", Toast.LENGTH_SHORT).show();
+			}else if(crenshu.equals("")){
+				Toast.makeText(getApplicationContext(), "请填入人数限制！", Toast.LENGTH_SHORT).show();
+			}else if(crenshu.equals("0")){
+				Toast.makeText(getApplicationContext(), "人数限制需大于0！", Toast.LENGTH_SHORT).show();
+			}else if(cshijian.equals("")){
+				Toast.makeText(getApplicationContext(), "请填入活动时间！", Toast.LENGTH_SHORT).show();
+			}else if(cjiezhi.equals("")){
+				Toast.makeText(getApplicationContext(), "请填入截止时间！", Toast.LENGTH_SHORT).show();
+			}else{
+				new Thread(runnable).start();
+			}
 		}
 
 		Handler handler = new Handler() {

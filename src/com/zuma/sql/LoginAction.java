@@ -40,12 +40,12 @@ public class LoginAction {
 	// return map;
 	// }
 
-	public static boolean isCorrectedUserAndPass(CharSequence username,
-			CharSequence password) {
+	public static boolean isCorrectedUserAndPass(String username,
+			String password) {
 
 		// OpenInternetInMainThread.OIIMT();
 		boolean a = false;
-		if (getLoginResult(username.toString(), password.toString()) == 1) {
+		if (getLoginResult(username, password) == 1) {
 			a = true;
 		}
 		return a;

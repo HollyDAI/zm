@@ -10,20 +10,10 @@ public final class C {
 		public static final String login			= Server + "user/login";
 		public static final String actList			= Server + "get/activityByCount";
 		public static final String postAct			= Server + "post/activity";
+		public static final String usernameCheck    = Server + "user/usernameCheck";
+		public static final String register         = Server + "user/register";
 		
-//		public static final String logout			= "/index/logout";
-//		public static final String faceView 		= "/image/faceView";
-//		public static final String faceList 		= "/image/faceList";
-//		public static final String blogList			= "/blog/blogList";
-//		public static final String blogView			= "/blog/blogView";
-//		public static final String blogCreate		= "/blog/blogCreate";
-//		public static final String commentList		= "/comment/commentList";
-//		public static final String commentCreate	= "/comment/commentCreate";
-//		public static final String customerView		= "/customer/customerView";
-//		public static final String customerEdit		= "/customer/customerEdit";
-//		public static final String fansAdd			= "/customer/fansAdd";
-//		public static final String fansDel			= "/customer/fansDel";
-//		public static final String notice			= "/notify/notice";
+		
 	}
 	
 
