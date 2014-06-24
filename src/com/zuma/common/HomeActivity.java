@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AbsListView;
@@ -27,6 +28,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.common.zuma.R;
 import com.zuma.base.C.api;
@@ -44,6 +46,7 @@ public class HomeActivity extends Activity {
 	private Communicate_with_sql sql = new Communicate_with_sql();
 
 	private int success = 0;
+	private int alerthome = 0;
 
 	private HashMap<String, Object> map;
 
@@ -138,7 +141,9 @@ public class HomeActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-
+				Intent intent = new Intent();
+				intent.setClass(getApplicationContext(), MessageDetailActivity.class);
+				startActivity(intent);
 			}
 		});
 		lv.setOnScrollListener(new OnScrollListener() {
@@ -264,5 +269,21 @@ public class HomeActivity extends Activity {
 				isRunning = false;
 			}
 		}
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			alerthome ++;
+			if(alerthome%2==1){
+				Toast.makeText(getApplicationContext(), "再按返回键退出",Toast.LENGTH_SHORT).show();
+			}else{
+				Toast.makeText(getApplicationContext(), "谢谢使用！", Toast.LENGTH_SHORT).show();
+				android.os.Process.killProcess(android.os.Process.myPid());
+			}
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }
