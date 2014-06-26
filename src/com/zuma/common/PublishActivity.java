@@ -34,9 +34,9 @@ public class PublishActivity extends Activity {
 	private String userToken;
 
 	private String climit, crenshu, cjiezhi, cbiaoti, cshijian,
-			cmiaoshu;
+			cmiaoshu, crenshumale, crenshufemale;
 	private int success;
-	private EditText renshu, jiezhi, biaoti, shijian, miaoshu, limit;
+	private EditText renshu, jiezhi, biaoti, shijian, miaoshu, limit,renshumale,renshufemale;
 	private Button fabu;
 	// private static final String[] m = { "学术", "美食", "体育", "旅行", "娱乐",
 	// "其他" };
@@ -50,6 +50,8 @@ public class PublishActivity extends Activity {
 		fabu = (Button) findViewById(R.id.fqfabu);
 		fabu.setOnClickListener(new fabuListener());
 		renshu = (EditText) findViewById(R.id.fqrenshu);
+		renshumale = (EditText)findViewById(R.id.fqrenshumale);
+		renshufemale = (EditText)findViewById(R.id.fqrenshufemale);
 		jiezhi = (EditText) findViewById(R.id.fqjiezhi);
 		biaoti = (EditText) findViewById(R.id.fqbiaoti);
 		shijian = (EditText) findViewById(R.id.fqshijian);
@@ -91,6 +93,8 @@ public class PublishActivity extends Activity {
 			cshijian = shijian.getText().toString();
 			cmiaoshu = miaoshu.getText().toString();
 			climit = limit.getText().toString();
+			crenshumale = renshumale.getText().toString();
+			crenshufemale = renshufemale.getText().toString();
 
 			if(cbiaoti.equals("")){
 				Toast.makeText(getApplicationContext(), "请填入标题！", Toast.LENGTH_SHORT).show();
@@ -118,11 +122,11 @@ public class PublishActivity extends Activity {
 					Toast.makeText(PublishActivity.this, "消息发布成功啦！",
 							Toast.LENGTH_LONG).show();
 					Intent mainIntent = new Intent(PublishActivity.this,
-							MessageListActivity.class);
+							HomeActivity.class);
 					Bundle b = new Bundle();
 					b.putString("userToken", userToken);
 					// 此处使用putExtras，接受方就响应的使用getExtra
-					mainIntent.putExtras(b);
+					mainIntent.putExtra("idValue",b);
 					startActivity(mainIntent);
 					finish();
 				} else {
@@ -144,14 +148,14 @@ public class PublishActivity extends Activity {
 				ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 				params.add(new BasicNameValuePair("userToken", userToken));
 				params.add(new BasicNameValuePair("limit", crenshu));
-				params.add(new BasicNameValuePair("limitMale", "0"));
-				params.add(new BasicNameValuePair("limitFemale", "0"));
+				params.add(new BasicNameValuePair("limitMale", crenshumale));
+				params.add(new BasicNameValuePair("limitFemale", crenshufemale));
 				params.add(new BasicNameValuePair("deadline", cjiezhi));
 				params.add(new BasicNameValuePair("title", cbiaoti));
-				params.add(new BasicNameValuePair("time", (new Timestamp(System
-						.currentTimeMillis())) + ""));
+				params.add(new BasicNameValuePair("time", cshijian));
 				params.add(new BasicNameValuePair("desc", cmiaoshu));
 
+//				(new Timestamp(System.currentTimeMillis())) + ""
 				// params.add(new BasicNameValuePair("limit", yaoqiu));
 
 				Communicate_with_sql sql = null;

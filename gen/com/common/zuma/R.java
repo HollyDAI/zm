@@ -11,6 +11,7 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int green_homeactivity=0x7f040005;
         public static final int green_main=0x7f040004;
         public static final int zhuye_faqi=0x7f040000;
         public static final int zhuye_haoyou=0x7f040002;
@@ -58,13 +59,15 @@ public final class R {
         public static final int fqjiezhi=0x7f090012;
         public static final int fqmiaoshu=0x7f090015;
         public static final int fqrenshu=0x7f090013;
+        public static final int fqrenshufemale=0x7f090017;
+        public static final int fqrenshumale=0x7f090016;
         public static final int fqshijian=0x7f090011;
         public static final int fqyaoqiu=0x7f090014;
-        public static final int fragment_listView=0x7f090016;
+        public static final int fragment_listView=0x7f090018;
         public static final int hybiaoti=0x7f090048;
         public static final int hywancheng=0x7f09004a;
         public static final int imb=0x7f090047;
-        public static final int img=0x7f090017;
+        public static final int img=0x7f090019;
         public static final int linearLayout1=0x7f090049;
         public static final int listView1=0x7f09004c;
         public static final int listView2=0x7f090063;
@@ -93,7 +96,6 @@ public final class R {
         public static final int szyijian=0x7f090032;
         public static final int tctijiao=0x7f09003e;
         public static final int tctucao=0x7f09003f;
-        public static final int textView5=0x7f09001c;
         public static final int tv1=0x7f090004;
         public static final int txwancheng=0x7f090035;
         public static final int txwcl=0x7f09003b;
@@ -133,13 +135,12 @@ public final class R {
         public static final int zhyanzheng=0x7f09005e;
         public static final int zycanjia=0x7f09001e;
         public static final int zyfaqi=0x7f090061;
-        public static final int zyhuodongming=0x7f090018;
-        public static final int zyjiezhishijian=0x7f09001d;
-        public static final int zyrenshuxianzhi=0x7f090019;
+        public static final int zyhuodongming=0x7f09001a;
+        public static final int zyrenshuxianzhi=0x7f09001c;
         public static final int zyshezhi=0x7f090062;
-        public static final int zyshijian=0x7f09001a;
+        public static final int zyshijian=0x7f09001d;
+        public static final int zystate=0x7f09001b;
         public static final int zyxiaoxi=0x7f090064;
-        public static final int zyzhushi=0x7f09001b;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

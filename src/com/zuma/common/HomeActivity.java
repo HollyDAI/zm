@@ -51,9 +51,9 @@ public class HomeActivity extends Activity {
 
 	private HashMap<String, Object> map;
 
-	private String strs[] = { "title", "deadline", "numLimit" };
-	private int ids[] = { R.id.zyhuodongming, R.id.zyjiezhishijian,
-			R.id.zyrenshuxianzhi };
+	private String strs[] = { "title", "state" , "limit", "time" };
+	private int ids[] = { R.id.zyhuodongming, R.id.zystate, R.id.zyrenshuxianzhi,
+			R.id.zyshijian };
 
 	private SimpleAdapter sa;
 	private ListView lv;
@@ -105,7 +105,7 @@ public class HomeActivity extends Activity {
 		//
 		setupListView();
 
-		System.out.println("=============HomeActivity=============");
+//		System.out.println("=============HomeActivity=============");
 
 	}
 
@@ -118,9 +118,8 @@ public class HomeActivity extends Activity {
 		for (int i = 0; i < ITEM_INDEX; i++) {
 			map = new HashMap<String, Object>();
 			map.put(strs[0], "数据加载中...");
-			map.put(strs[1], "数据加载中...");
-			map.put(strs[2], "数据加载中...");
 			ldata.add(map);
+			System.out.println("setData=======" + ldata.size());
 		}
 	}
 
@@ -139,11 +138,15 @@ public class HomeActivity extends Activity {
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.setClass(getApplicationContext(), MessageDetailActivity.class);
+				intent.setClass(getApplicationContext(),
+						MessageDetailActivity.class);
+				Bundle b = new Bundle();
+//				b.putSerializable("data", ldata.get(position));
+				
 				startActivity(intent);
 			}
 		});
@@ -183,12 +186,12 @@ public class HomeActivity extends Activity {
 			public boolean setViewValue(View view, Object data,
 					String textRepresentation) {
 				// TODO Auto-generated method stub
-				 if (view instanceof View && data instanceof Bitmap) {
-//				 ImageView iv = (ImageView) view;
-				// iv.setImageBitmap((Bitmap) data);
-				return true;
-				 } else
-				 return false;
+				if (view instanceof View && data instanceof Bitmap) {
+					// ImageView iv = (ImageView) view;
+					// iv.setImageBitmap((Bitmap) data);
+					return true;
+				} else
+					return false;
 			}
 		});
 	}
@@ -204,7 +207,7 @@ public class HomeActivity extends Activity {
 			String uriAPI = api.actList;
 			String position = (Integer) arg0[0] + "";
 			map = (HashMap<String, Object>) arg0[1];
-
+			
 			try {
 				ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 				params.add(new BasicNameValuePair("userToken", userToken
@@ -251,43 +254,57 @@ public class HomeActivity extends Activity {
 
 		protected void onPostExecute(Integer success) {
 			// TODO Auto-generated method stub
-
-			System.out.println("=======tasktask==========");
 			if (success == 1) {
+				
 				map.put("id", id);
 				map.put("title", title);
-				map.put("nunlmLimit", numLimit);
-				map.put("state", state);
-				map.put("ownerId", ownerId);
-				map.put("desc", desc);
-				map.put("proposeTime", proposeTime);
-				map.put("deadLine", deadLine);
-				map.put("maleLimit", maleLimit);
-				map.put("femaleLimit", femaleLimit);
+
+				/*
+				 * map.put("nunlmLimit", numLimit); map.put("state", state);
+				 * map.put("ownerId", ownerId); map.put("desc", desc);
+				 * map.put("proposeTime", proposeTime); map.put("deadLine",
+				 * deadLine); map.put("maleLimit", maleLimit);
+				 * map.put("femaleLimit", femaleLimit);
+				 */
+
+				// if(state == ) //对state进行转换显示
+				map.put("state", "状态:" + state);
+
+				String limitstr = null;
+				if (maleLimit == 0 && femaleLimit == 0) {
+					limitstr = "无要求";
+					map.put("limit", "人数:" + numLimit + "(" + limitstr + ")");
+				}else{
+					map.put("limit", "人数:" + numLimit + "(M:" + maleLimit + "/F:"
+							+ femaleLimit + ")");
+				}
+				
+				map.put("time", "时间" + proposeTime.substring(0, 10) + " 至 " + deadLine.substring(0, 10));
 				ldata.add(map);
-				System.out.println(""+ldata.size());
-				HomeActivity.this.runOnUiThread(new Runnable()
-				{
+				System.out.println("map put =======" + ldata.size());
+				
+				HomeActivity.this.runOnUiThread(new Runnable() {
 					public void run() {
-						sa.notifyDataSetChanged();	
+						sa.notifyDataSetChanged();
 					}
 				});
-			
-				
+
 				isRunning = false;
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			alerthome ++;
-			if(alerthome%2==1){
-				Toast.makeText(getApplicationContext(), "再按返回键退出",Toast.LENGTH_SHORT).show();
-			}else{
-				Toast.makeText(getApplicationContext(), "谢谢使用！", Toast.LENGTH_SHORT).show();
+			alerthome++;
+			if (alerthome % 2 == 1) {
+				Toast.makeText(getApplicationContext(), "再按返回键退出",
+						Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(getApplicationContext(), "谢谢使用！",
+						Toast.LENGTH_SHORT).show();
 				android.os.Process.killProcess(android.os.Process.myPid());
 			}
 			return true;

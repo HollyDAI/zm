@@ -31,7 +31,7 @@
         android:id="@+id/fqbiaoti"
         android:layout_width="wrap_content"
         android:layout_height="40sp"
-        android:hint="发起活动标题"
+        android:hint="*发起活动标题"
         android:background="#FFFFFF"
         android:layout_alignLeft="@+id/szbiaoti"
         android:layout_below="@+id/szbiaoti"
@@ -45,7 +45,7 @@
         android:id="@+id/fqshijian"
         android:layout_width="120sp"
         android:layout_height="40sp"
-        android:hint="活动时间"
+        android:hint="*活动时间"
         android:background="#FFFFFF"
         android:layout_alignLeft="@+id/fqbiaoti"
         android:layout_below="@+id/fqbiaoti"
@@ -56,7 +56,7 @@
         android:id="@+id/fqjiezhi"
         android:layout_width="120sp"
         android:layout_height="40sp"
-        android:hint="截止日期"
+        android:hint="*截止日期"
         android:background="#FFFFFF"
         android:layout_alignBaseline="@+id/fqshijian"
         android:layout_alignBottom="@+id/fqshijian"
@@ -68,12 +68,13 @@
         android:id="@+id/fqrenshu"
         android:layout_width="120sp"
         android:layout_height="40sp"
-        android:hint="人数限制"
+        android:hint="*人数限制"
         android:background="#FFFFFF"
         android:layout_alignLeft="@+id/fqshijian"
         android:layout_below="@+id/fqshijian"
         android:layout_marginTop="21dp"
         android:layout_toLeftOf="@+id/fqjiezhi"
+        android:numeric="integer"
         android:ems="10" />
 
     <EditText
@@ -103,5 +104,28 @@
         android:layout_marginBottom="10sp"
         android:ems="10"
         android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/fqrenshumale"
+        android:layout_width="50sp"
+        android:layout_height="40sp"
+        android:layout_above="@+id/fqyaoqiu"
+        android:layout_alignLeft="@+id/fqjiezhi"
+        android:background="#FFFFFF"
+        android:ems="4"
+         android:numeric="integer"
+        android:hint="男" />
+
+    <EditText
+        android:id="@+id/fqrenshufemale"
+        android:layout_width="50sp"
+        android:layout_height="40sp"
+        android:layout_alignBaseline="@+id/fqrenshumale"
+        android:layout_alignBottom="@+id/fqrenshumale"
+        android:layout_alignRight="@+id/fqjiezhi"
+        android:background="#FFFFFF"
+        android:ems="4"
+         android:numeric="integer"
+        android:hint="女" />
 
 </RelativeLayout>
