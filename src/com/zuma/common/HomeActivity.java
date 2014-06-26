@@ -15,6 +15,7 @@ import org.json.JSONTokener;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -182,12 +183,12 @@ public class HomeActivity extends Activity {
 			public boolean setViewValue(View view, Object data,
 					String textRepresentation) {
 				// TODO Auto-generated method stub
-				// if (view instanceof ImageView && data instanceof Bitmap) {
-				// ImageView iv = (ImageView) view;
+				 if (view instanceof View && data instanceof Bitmap) {
+//				 ImageView iv = (ImageView) view;
 				// iv.setImageBitmap((Bitmap) data);
 				return true;
-				// } else
-				// return false;
+				 } else
+				 return false;
 			}
 		});
 	}
@@ -255,7 +256,7 @@ public class HomeActivity extends Activity {
 			if (success == 1) {
 				map.put("id", id);
 				map.put("title", title);
-				map.put("numLimit", numLimit);
+				map.put("nunlmLimit", numLimit);
 				map.put("state", state);
 				map.put("ownerId", ownerId);
 				map.put("desc", desc);
@@ -264,8 +265,15 @@ public class HomeActivity extends Activity {
 				map.put("maleLimit", maleLimit);
 				map.put("femaleLimit", femaleLimit);
 				ldata.add(map);
-
-				sa.notifyDataSetChanged();
+				System.out.println(""+ldata.size());
+				HomeActivity.this.runOnUiThread(new Runnable()
+				{
+					public void run() {
+						sa.notifyDataSetChanged();	
+					}
+				});
+			
+				
 				isRunning = false;
 			}
 		}
