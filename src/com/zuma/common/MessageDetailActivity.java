@@ -13,7 +13,6 @@ import com.common.zuma.R;
 import com.zuma.util.SerializableMap;
 
 public class MessageDetailActivity extends Activity {
-	private String title, numLimit ,femaleLimit, maleLimit, proposeTime, deadLine, desc, limit; 
 	private String fanhui, userToken, actid;
 	private TextView ttitle, tnumLimit , tTime, tdesc, tlimit;
 	private Button queding;
@@ -30,8 +29,8 @@ public class MessageDetailActivity extends Activity {
 		Map<String, Object> map = smap.getMap();
 		
 		ttitle = (TextView) findViewById(R.id.list_detail_huodongming);
-		tnumLimit = (TextView) findViewById(R.id.list_detail_renshuxianzhi);
-		tTime = (TextView) findViewById(R.id.list_detail_huodongshijian);
+		tnumLimit = (TextView) findViewById(R.id.list_detail_numLimit);
+		tTime = (TextView) findViewById(R.id.list_detail_time);
 		tdesc = (TextView) findViewById(R.id.list_detail_desc);
 		tlimit = (TextView) findViewById(R.id.list_detail_limit);
 		

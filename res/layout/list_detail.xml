@@ -26,40 +26,29 @@
         android:text="title"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/list_detail_zhushi"
+      <TextView
+        android:id="@+id/list_detail_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/list_detail_renshuxianzhi"
-        android:layout_below="@+id/list_detail_renshuxianzhi"
-        android:layout_marginTop="16dp"
-        android:text="numLimit" />
-
-    <TextView
-        android:id="@+id/list_detail_huodongshijian"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/list_detail_renshuxianzhi"
-        android:layout_alignBottom="@+id/list_detail_renshuxianzhi"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/list_detail_renshuxianzhi"
-        android:text="deadLine" />
-     
-     <TextView
-        android:id="@+id/list_detail_renshuxianzhi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/list_detail_huodongming"
+        android:layout_alignLeft="@id/list_detail_huodongming"
         android:layout_below="@+id/list_detail_huodongming"
         android:layout_marginTop="16dp"
         android:text="proTime" />
-
+    
+    <TextView
+        android:id="@+id/list_detail_numLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/list_detail_time"
+        android:layout_below="@id/list_detail_time"
+        android:layout_marginTop="16dp"
+        android:text="numLimit" />
     <TextView
         android:id="@+id/list_detail_limit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/list_detail_zhushi"
-        android:layout_below="@+id/list_detail_zhushi"
+        android:layout_alignLeft="@+id/list_detail_numLimit"
+        android:layout_below="@+id/list_detail_numLimit"
         android:layout_marginTop="16dp"
         android:text="limit" />
     
@@ -67,7 +56,7 @@
         android:id="@+id/list_detail_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/list_detail_zhushi"
+        android:layout_alignLeft="@+id/list_detail_numLimit"
         android:layout_below="@+id/list_detail_limit"
         android:layout_marginTop="16dp"
         android:text="desc" />
