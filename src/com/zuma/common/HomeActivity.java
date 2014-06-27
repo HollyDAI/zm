@@ -14,6 +14,10 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -34,7 +38,9 @@ import android.widget.Toast;
 import com.common.zuma.R;
 import com.zuma.base.C.api;
 import com.zuma.sql.Communicate_with_sql;
+import com.zuma.util.SerializableMap;
 
+@SuppressWarnings("unused")
 public class HomeActivity extends Activity {
 
 	private final static int ITEM_INDEX = 10;
@@ -43,6 +49,7 @@ public class HomeActivity extends Activity {
 	private int id, numLimit, state, ownerId, maleLimit, femaleLimit;
 	private Button faqi, xiaoxi, shezhi;
 	// , canjia, btn[];
+
 	private String title, desc, proposeTime, deadLine;
 	private Communicate_with_sql sql = new Communicate_with_sql();
 
@@ -51,9 +58,9 @@ public class HomeActivity extends Activity {
 
 	private HashMap<String, Object> map;
 
-	private String strs[] = { "title", "state" , "limit", "time" };
-	private int ids[] = { R.id.zyhuodongming, R.id.zystate, R.id.zyrenshuxianzhi,
-			R.id.zyshijian };
+	private String strs[] = { "title", "state", "limit", "time" };
+	private int ids[] = { R.id.zyhuodongming, R.id.zystate,
+			R.id.zyrenshuxianzhi, R.id.zyshijian };
 
 	private SimpleAdapter sa;
 	private ListView lv;
@@ -66,7 +73,33 @@ public class HomeActivity extends Activity {
 		setContentView(R.layout.zhuye);
 
 		b = getIntent().getBundleExtra("idValue");
-		userToken = b.getString("userToken");
+		if (b.getString("userToken") != null) {
+			userToken = b.getString("userToken");
+		} else {
+			Dialog alert = new AlertDialog.Builder(HomeActivity.this)
+				.setTitle("不好意思！")
+				.setMessage("网络错误或是登录太久，请重新登录！")
+				.setPositiveButton("跳转登录", new OnClickListener() {
+					
+					public void onClick(DialogInterface arg0, int arg1) {
+						// TODO Auto-generated method stub
+						Intent intent = new Intent();
+						intent.setClass(getApplicationContext(), MainActivity.class);
+						startActivity(intent);
+						finish();
+					}
+				})
+				.setNegativeButton("退出程序", new OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						// TODO Auto-generated method stub
+						android.os.Process.killProcess(android.os.Process.myPid());
+					}
+				})
+				.create();
+			alert.show();
+		}
 
 		faqi = (Button) findViewById(R.id.zyfaqi);
 		faqi.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +138,7 @@ public class HomeActivity extends Activity {
 		//
 		setupListView();
 
-//		System.out.println("=============HomeActivity=============");
+		// System.out.println("=============HomeActivity=============");
 
 	}
 
@@ -119,7 +152,6 @@ public class HomeActivity extends Activity {
 			map = new HashMap<String, Object>();
 			map.put(strs[0], "数据加载中...");
 			ldata.add(map);
-			System.out.println("setData=======" + ldata.size());
 		}
 	}
 
@@ -138,15 +170,18 @@ public class HomeActivity extends Activity {
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-					long arg3) {
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.setClass(getApplicationContext(),
 						MessageDetailActivity.class);
 				Bundle b = new Bundle();
-//				b.putSerializable("data", ldata.get(position));
-				
+				SerializableMap smap = new SerializableMap();
+				smap.setMap(ldata.get(position));
+				b.putSerializable("smap", smap);
+				b.putString("userToken", userToken);
+				intent.putExtras(b);
 				startActivity(intent);
 			}
 		});
@@ -200,6 +235,7 @@ public class HomeActivity extends Activity {
 
 		private boolean isRunning;
 
+		@SuppressWarnings("unchecked")
 		@Override
 		protected Integer doInBackground(Object... arg0) {
 			// TODO Auto-generated method stub
@@ -207,7 +243,7 @@ public class HomeActivity extends Activity {
 			String uriAPI = api.actList;
 			String position = (Integer) arg0[0] + "";
 			map = (HashMap<String, Object>) arg0[1];
-			
+
 			try {
 				ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 				params.add(new BasicNameValuePair("userToken", userToken
@@ -255,7 +291,9 @@ public class HomeActivity extends Activity {
 		protected void onPostExecute(Integer success) {
 			// TODO Auto-generated method stub
 			if (success == 1) {
-				
+
+				map.remove(strs[0]);
+
 				map.put("id", id);
 				map.put("title", title);
 
@@ -274,15 +312,16 @@ public class HomeActivity extends Activity {
 				if (maleLimit == 0 && femaleLimit == 0) {
 					limitstr = "无要求";
 					map.put("limit", "人数:" + numLimit + "(" + limitstr + ")");
-				}else{
-					map.put("limit", "人数:" + numLimit + "(M:" + maleLimit + "/F:"
-							+ femaleLimit + ")");
+				} else {
+					map.put("limit", "人数:" + numLimit + "(M:" + maleLimit
+							+ "/F:" + femaleLimit + ")");
 				}
-				
-				map.put("time", "时间" + proposeTime.substring(0, 10) + " 至 " + deadLine.substring(0, 10));
-				ldata.add(map);
-				System.out.println("map put =======" + ldata.size());
-				
+
+				map.put("time", "时间:" + proposeTime.substring(0, 10) + " 至 "
+						+ deadLine.substring(0, 10));
+
+				// System.out.println("map put =======" + ldata.size());
+
 				HomeActivity.this.runOnUiThread(new Runnable() {
 					public void run() {
 						sa.notifyDataSetChanged();

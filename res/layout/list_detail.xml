@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beijing" >
+    <TextView
+        android:id="@+id/zcbiaoti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="活动详情"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/list_detail_huodongming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/zcbiaoti"
+        android:layout_below="@+id/zcbiaoti"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="16dp"
+        android:text="title"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/list_detail_zhushi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/list_detail_renshuxianzhi"
+        android:layout_below="@+id/list_detail_renshuxianzhi"
+        android:layout_marginTop="16dp"
+        android:text="numLimit" />
+
+    <TextView
+        android:id="@+id/list_detail_huodongshijian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/list_detail_renshuxianzhi"
+        android:layout_alignBottom="@+id/list_detail_renshuxianzhi"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/list_detail_renshuxianzhi"
+        android:text="deadLine" />
+     
+     <TextView
+        android:id="@+id/list_detail_renshuxianzhi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/list_detail_huodongming"
+        android:layout_below="@+id/list_detail_huodongming"
+        android:layout_marginTop="16dp"
+        android:text="proTime" />
+
+    <TextView
+        android:id="@+id/list_detail_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/list_detail_zhushi"
+        android:layout_below="@+id/list_detail_zhushi"
+        android:layout_marginTop="16dp"
+        android:text="limit" />
+    
+    <TextView
+        android:id="@+id/list_detail_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/list_detail_zhushi"
+        android:layout_below="@+id/list_detail_limit"
+        android:layout_marginTop="16dp"
+        android:text="desc" />
+    
+    <TextView
+        android:id="@+id/list_detail_titleparticipant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/zcbiaoti"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/list_detail_desc"
+        android:text="Participants"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <ImageView
+        android:id="@+id/list_detail_nvbiao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/list_detail_huodongming"
+        android:layout_below="@id/list_detail_titleparticipant"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/list_detail_nanbiao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/list_detail_nvbiao"
+        android:layout_marginRight="31dp"
+        android:src="@drawable/ic_launcher" />
+
+    <Button
+        android:id="@+id/list_detail_wancheng"
+        android:layout_width="100sp"
+        android:layout_height="40sp"
+        android:background="@color/green_main"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:text="完成征集" />
+
+    <ScrollView
+        android:id="@+id/list_detail_nv"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/list_detail_wancheng"
+        android:layout_alignLeft="@+id/list_detail_nvbiao"
+        android:layout_below="@+id/list_detail_nvbiao" >
+
+        <LinearLayout
+            android:id="@+id/nvlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/list_detail_nan"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/list_detail_wancheng"
+        android:layout_alignRight="@+id/list_detail_nanbiao"
+        android:layout_below="@+id/list_detail_nanbiao"
+        android:layout_toRightOf="@id/list_detail_nv" >
+
+        <LinearLayout
+            android:id="@+id/nanlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
