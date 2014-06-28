@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -22,7 +23,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -31,6 +35,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -54,12 +59,12 @@ public class HomeActivity extends Activity {
 	private Communicate_with_sql sql = new Communicate_with_sql();
 
 	private int success = 0;
-	private int alerthome = 0;
+	private boolean isExit = false;
 
 	private HashMap<String, Object> map;
 
-	private String strs[] = { "title", "state", "limit", "time" };
-	private int ids[] = { R.id.zyhuodongming, R.id.zystate,
+	private String strs[] = { "avatar" , "title", "state", "limit", "time" };
+	private int ids[] = { R.id.zyimg , R.id.zyhuodongming, R.id.zystate,
 			R.id.zyrenshuxianzhi, R.id.zyshijian };
 
 	private SimpleAdapter sa;
@@ -129,8 +134,8 @@ public class HomeActivity extends Activity {
 				Intent mainIntent = new Intent(HomeActivity.this,
 						SettingsActivity.class);
 				b.putString("userToken", userToken);
-				// 此处使用putExtras，接受方就响应的使用getExtra
 				mainIntent.putExtra("idValue", b);
+				mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				HomeActivity.this.startActivity(mainIntent);
 			}
 		});
@@ -150,7 +155,8 @@ public class HomeActivity extends Activity {
 		Map<String, Object> map;
 		for (int i = 0; i < ITEM_INDEX; i++) {
 			map = new HashMap<String, Object>();
-			map.put(strs[0], "数据加载中...");
+			map.put(strs[0], R.drawable.avatar);
+			map.put(strs[1], "数据加载中...");
 			ldata.add(map);
 		}
 	}
@@ -221,9 +227,9 @@ public class HomeActivity extends Activity {
 			public boolean setViewValue(View view, Object data,
 					String textRepresentation) {
 				// TODO Auto-generated method stub
-				if (view instanceof View && data instanceof Bitmap) {
-					// ImageView iv = (ImageView) view;
-					// iv.setImageBitmap((Bitmap) data);
+				if (view instanceof ImageView && data instanceof Bitmap) {
+					 ImageView iv = (ImageView) view;
+					 iv.setImageBitmap((Bitmap) data);
 					return true;
 				} else
 					return false;
@@ -292,7 +298,7 @@ public class HomeActivity extends Activity {
 			// TODO Auto-generated method stub
 			if (success == 1) {
 
-				map.remove(strs[0]);
+				map.remove(strs[1]);
 
 				map.put("id", id);
 				map.put("title", title);
@@ -333,21 +339,31 @@ public class HomeActivity extends Activity {
 		}
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			alerthome++;
-			if (alerthome % 2 == 1) {
-				Toast.makeText(getApplicationContext(), "再按返回键退出",
-						Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(getApplicationContext(), "谢谢使用！",
-						Toast.LENGTH_SHORT).show();
-				android.os.Process.killProcess(android.os.Process.myPid());
-			}
-			return true;
+	@SuppressLint("HandlerLeak")
+	Handler exitHandler = new Handler(){
+
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			super.handleMessage(msg);
+			isExit = false;
 		}
-		return super.onOptionsItemSelected(item);
+	};
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if(keyCode==KeyEvent.KEYCODE_BACK){
+			if(isExit){
+				finish();
+				android.os.Process.killProcess(android.os.Process.myPid());
+			} else {
+				isExit = true;
+				Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+				exitHandler.sendEmptyMessageDelayed(0, 2000);
+			}
+		}
+		return isExit;
 	}
+	
+	
 }

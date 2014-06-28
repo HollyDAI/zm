@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="info">出现白屏的话不要怕</string>
     <string name="app_name">Zuma</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>

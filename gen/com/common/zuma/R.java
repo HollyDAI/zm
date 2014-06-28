@@ -29,8 +29,9 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int beijing=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
+        public static final int avatar=0x7f020000;
+        public static final int beijing=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
         public static final int ScrollView01=0x7f090027;
@@ -67,7 +68,6 @@ public final class R {
         public static final int hybiaoti=0x7f090056;
         public static final int hywancheng=0x7f090058;
         public static final int imb=0x7f090055;
-        public static final int img=0x7f090028;
         public static final int linearLayout1=0x7f090057;
         public static final int listView1=0x7f09005a;
         public static final int listView2=0x7f09006e;
@@ -147,6 +147,7 @@ public final class R {
         public static final int zycanjia=0x7f09002d;
         public static final int zyfaqi=0x7f09006c;
         public static final int zyhuodongming=0x7f090029;
+        public static final int zyimg=0x7f090028;
         public static final int zyrenshuxianzhi=0x7f09002b;
         public static final int zyshezhi=0x7f09006d;
         public static final int zyshijian=0x7f09002c;
@@ -182,14 +183,15 @@ public final class R {
         public static final int main=0x7f080000;
     }
     public static final class string {
-        public static final int action_settings=0x7f060001;
-        public static final int app_name=0x7f060000;
-        public static final int hello_world=0x7f060002;
-        public static final int noFuntion=0x7f060003;
-        public static final int setting_fail=0x7f060005;
-        public static final int setting_success=0x7f060004;
-        public static final int tucao_fail=0x7f060007;
-        public static final int tucao_success=0x7f060006;
+        public static final int action_settings=0x7f060002;
+        public static final int app_name=0x7f060001;
+        public static final int hello_world=0x7f060003;
+        public static final int info=0x7f060000;
+        public static final int noFuntion=0x7f060004;
+        public static final int setting_fail=0x7f060006;
+        public static final int setting_success=0x7f060005;
+        public static final int tucao_fail=0x7f060008;
+        public static final int tucao_success=0x7f060007;
     }
     public static final class style {
         /** 

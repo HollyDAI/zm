@@ -13,6 +13,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
 
 import android.util.Log;
 
@@ -25,6 +26,7 @@ public class Communicate_with_sql {
 		try {
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpPost httpPost = new HttpPost(uri);
+			httpPost.addHeader("charset", HTTP.UTF_8);
 			httpPost.setEntity(new UrlEncodedFormEntity(params));
 			HttpResponse response = httpClient.execute(httpPost);
 			HttpEntity entity = response.getEntity();

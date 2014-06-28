@@ -1,7 +1,6 @@
 package com.zuma.common;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import org.apache.http.NameValuePair;
@@ -33,15 +32,17 @@ public class PublishActivity extends Activity {
 	private Bundle b;
 	private String userToken;
 
-	private String climit, crenshu, cjiezhi, cbiaoti, cshijian,
-			cmiaoshu, crenshumale, crenshufemale;
+	private String climit, crenshu, cjiezhi, cbiaoti, cshijian, cmiaoshu,
+			crenshumale, crenshufemale;
 	private int success;
-	private EditText renshu, jiezhi, biaoti, shijian, miaoshu, limit,renshumale,renshufemale;
+	private EditText renshu, jiezhi, biaoti, shijian, miaoshu, limit,
+			renshumale, renshufemale;
 	private Button fabu;
+
 	// private static final String[] m = { "学术", "美食", "体育", "旅行", "娱乐",
 	// "其他" };
-//	private Spinner spinner;
-//	private ArrayAdapter<String> adapter;
+	// private Spinner spinner;
+	// private ArrayAdapter<String> adapter;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,8 +51,8 @@ public class PublishActivity extends Activity {
 		fabu = (Button) findViewById(R.id.fqfabu);
 		fabu.setOnClickListener(new fabuListener());
 		renshu = (EditText) findViewById(R.id.fqrenshu);
-		renshumale = (EditText)findViewById(R.id.fqrenshumale);
-		renshufemale = (EditText)findViewById(R.id.fqrenshufemale);
+		renshumale = (EditText) findViewById(R.id.fqrenshumale);
+		renshufemale = (EditText) findViewById(R.id.fqrenshufemale);
 		jiezhi = (EditText) findViewById(R.id.fqjiezhi);
 		biaoti = (EditText) findViewById(R.id.fqbiaoti);
 		shijian = (EditText) findViewById(R.id.fqshijian);
@@ -96,17 +97,22 @@ public class PublishActivity extends Activity {
 			crenshumale = renshumale.getText().toString();
 			crenshufemale = renshufemale.getText().toString();
 
-			if(cbiaoti.equals("")){
-				Toast.makeText(getApplicationContext(), "请填入标题！", Toast.LENGTH_SHORT).show();
-			}else if(crenshu.equals("")){
-				Toast.makeText(getApplicationContext(), "请填入人数限制！", Toast.LENGTH_SHORT).show();
-			}else if(crenshu.equals("0")){
-				Toast.makeText(getApplicationContext(), "人数限制需大于0！", Toast.LENGTH_SHORT).show();
-			}else if(cshijian.equals("")){
-				Toast.makeText(getApplicationContext(), "请填入活动时间！", Toast.LENGTH_SHORT).show();
-			}else if(cjiezhi.equals("")){
-				Toast.makeText(getApplicationContext(), "请填入截止时间！", Toast.LENGTH_SHORT).show();
-			}else{
+			if (cbiaoti.equals("")) {
+				Toast.makeText(getApplicationContext(), "请填入标题！",
+						Toast.LENGTH_SHORT).show();
+			} else if (crenshu.equals("")) {
+				Toast.makeText(getApplicationContext(), "请填入人数限制！",
+						Toast.LENGTH_SHORT).show();
+			} else if (crenshu.equals("0")) {
+				Toast.makeText(getApplicationContext(), "人数限制需大于0！",
+						Toast.LENGTH_SHORT).show();
+			} else if (cshijian.equals("")) {
+				Toast.makeText(getApplicationContext(), "请填入活动时间！",
+						Toast.LENGTH_SHORT).show();
+			} else if (cjiezhi.equals("")) {
+				Toast.makeText(getApplicationContext(), "请填入截止时间！",
+						Toast.LENGTH_SHORT).show();
+			} else {
 				new Thread(runnable).start();
 			}
 		}
@@ -125,8 +131,7 @@ public class PublishActivity extends Activity {
 							HomeActivity.class);
 					Bundle b = new Bundle();
 					b.putString("userToken", userToken);
-					// 此处使用putExtras，接受方就响应的使用getExtra
-					mainIntent.putExtra("idValue",b);
+					mainIntent.putExtra("idValue", b);
 					startActivity(mainIntent);
 					finish();
 				} else {
@@ -155,8 +160,7 @@ public class PublishActivity extends Activity {
 				params.add(new BasicNameValuePair("time", cshijian));
 				params.add(new BasicNameValuePair("desc", cmiaoshu));
 
-//				(new Timestamp(System.currentTimeMillis())) + ""
-				// params.add(new BasicNameValuePair("limit", yaoqiu));
+				System.out.println("input======" + cbiaoti + cmiaoshu);
 
 				Communicate_with_sql sql = null;
 				try {
