@@ -5,6 +5,7 @@ import com.common.zuma.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -63,4 +64,17 @@ public class FeedbackActivity extends Activity {
 		});
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if(keyCode==KeyEvent.KEYCODE_BACK){
+			Intent intent = new Intent();
+			intent.setClass(getApplicationContext(), SettingsActivity.class);
+			Bundle b = new Bundle();
+			b.putString("userToken", userToken);
+			startActivity(intent);
+			finish();
+		}
+		return true;
+	}
 }

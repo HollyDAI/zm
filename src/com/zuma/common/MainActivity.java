@@ -1,11 +1,14 @@
 package com.zuma.common;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
+import android.os.Handler;
+import android.os.Message;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +31,7 @@ public class MainActivity extends Activity {
 	private ProgressDialog pd = null;
 
 	private Bundle b = null;
+	private boolean isExit = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -150,4 +154,32 @@ public class MainActivity extends Activity {
 		}
 
 	}
+
+	@SuppressLint("HandlerLeak")
+	Handler exitHandler = new Handler(){
+
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			super.handleMessage(msg);
+			isExit = false;
+		}
+	};
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if(keyCode==KeyEvent.KEYCODE_BACK){
+			if(isExit){
+				finish();
+				android.os.Process.killProcess(android.os.Process.myPid());
+			} else {
+				isExit = true;
+				Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+				exitHandler.sendEmptyMessageDelayed(0, 2000);
+			}
+		}
+		return isExit;
+	}
+	
+	
 }

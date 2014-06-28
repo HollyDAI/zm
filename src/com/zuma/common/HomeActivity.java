@@ -43,6 +43,7 @@ import android.widget.Toast;
 import com.common.zuma.R;
 import com.zuma.base.C.api;
 import com.zuma.sql.Communicate_with_sql;
+import com.zuma.util.CommonFunction;
 import com.zuma.util.SerializableMap;
 
 @SuppressWarnings("unused")
@@ -81,29 +82,7 @@ public class HomeActivity extends Activity {
 		if (b.getString("userToken") != null) {
 			userToken = b.getString("userToken");
 		} else {
-			Dialog alert = new AlertDialog.Builder(HomeActivity.this)
-				.setTitle("不好意思！")
-				.setMessage("网络错误或是登录太久，请重新登录！")
-				.setPositiveButton("跳转登录", new OnClickListener() {
-					
-					public void onClick(DialogInterface arg0, int arg1) {
-						// TODO Auto-generated method stub
-						Intent intent = new Intent();
-						intent.setClass(getApplicationContext(), MainActivity.class);
-						startActivity(intent);
-						finish();
-					}
-				})
-				.setNegativeButton("退出程序", new OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface arg0, int arg1) {
-						// TODO Auto-generated method stub
-						android.os.Process.killProcess(android.os.Process.myPid());
-					}
-				})
-				.create();
-			alert.show();
+			CommonFunction.alert_NoUsertoken(getApplicationContext());
 		}
 
 		faqi = (Button) findViewById(R.id.zyfaqi);

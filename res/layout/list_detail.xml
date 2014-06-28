@@ -98,7 +98,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="14dp"
-        android:text="完成征集" />
+        android:text="我要参加" />
 
     <ScrollView
         android:id="@+id/list_detail_nv"

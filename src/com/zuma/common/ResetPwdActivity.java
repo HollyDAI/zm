@@ -1,19 +1,45 @@
 package com.zuma.common;
 
 import com.common.zuma.R;
+import com.zuma.util.CommonFunction;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Window;
 
 public class ResetPwdActivity extends Activity {
 
+	private String userToken = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.zhaohui);
+		
+		if(getIntent().getBundleExtra("idValue").getString("userToken")!=null){
+			userToken = getIntent().getBundleExtra("idValue").getString("userToken");
+		}else{
+			CommonFunction.alert_NoUsertoken(getApplicationContext());
+		}
+		
 	}
 	
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if(keyCode==KeyEvent.KEYCODE_BACK){
+			Intent intent = new Intent();
+			intent.setClass(getApplicationContext(), SettingsActivity.class);
+			Bundle b = new Bundle();
+			b.putString("userToken", userToken);
+			startActivity(intent);
+			finish();
+		}
+		return true;
+	}
 }
