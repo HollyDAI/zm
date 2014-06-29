@@ -72,6 +72,7 @@ public class FeedbackActivity extends Activity {
 			intent.setClass(getApplicationContext(), SettingsActivity.class);
 			Bundle b = new Bundle();
 			b.putString("userToken", userToken);
+			intent.putExtra("idValue", b);
 			startActivity(intent);
 			finish();
 		}

@@ -17,15 +17,20 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +42,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.common.zuma.R;
@@ -64,10 +71,11 @@ public class HomeActivity extends Activity {
 
 	private HashMap<String, Object> map;
 
-	private String strs[] = { "avatar" , "title", "state", "limit", "time" };
-	private int ids[] = { R.id.zyimg , R.id.zyhuodongming, R.id.zystate,
+	private String strs[] = { "avatar", "title", "state", "limit", "time" };
+	private int ids[] = { R.id.zyimg, R.id.zyhuodongming, R.id.zystate,
 			R.id.zyrenshuxianzhi, R.id.zyshijian };
 
+	private ProgressBar progressBar = null;
 	private SimpleAdapter sa;
 	private ListView lv;
 	private List<GetAcitivityTask> ltask = new ArrayList<GetAcitivityTask>();
@@ -140,9 +148,17 @@ public class HomeActivity extends Activity {
 		}
 	}
 
+	public void setupFooterView() {
+		
+		progressBar = new ProgressBar(this);
+		progressBar.setPadding(0, 0, 15, 0);
+		lv.addFooterView(progressBar);
+	}
+
 	public void setupListView() {
 
 		lv = (ListView) findViewById(R.id.listView2);
+		setupFooterView();
 		setData();
 		setSimpleAdapter();
 		lv.setAdapter(sa);
@@ -191,10 +207,6 @@ public class HomeActivity extends Activity {
 		return sa;
 	}
 
-	// public void setSaToListView() {
-	// lv.setAdapter(sa);
-	// }
-
 	private void setSimpleAdapter() {
 		// TODO Auto-generated method stub
 		sa = new SimpleAdapter(HomeActivity.this, ldata, R.layout.list_item,
@@ -207,8 +219,8 @@ public class HomeActivity extends Activity {
 					String textRepresentation) {
 				// TODO Auto-generated method stub
 				if (view instanceof ImageView && data instanceof Bitmap) {
-					 ImageView iv = (ImageView) view;
-					 iv.setImageBitmap((Bitmap) data);
+					ImageView iv = (ImageView) view;
+					iv.setImageBitmap((Bitmap) data);
 					return true;
 				} else
 					return false;
@@ -319,7 +331,7 @@ public class HomeActivity extends Activity {
 	}
 
 	@SuppressLint("HandlerLeak")
-	Handler exitHandler = new Handler(){
+	Handler exitHandler = new Handler() {
 
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
@@ -327,22 +339,22 @@ public class HomeActivity extends Activity {
 			isExit = false;
 		}
 	};
-	
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
-		if(keyCode==KeyEvent.KEYCODE_BACK){
-			if(isExit){
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if (isExit) {
 				finish();
 				android.os.Process.killProcess(android.os.Process.myPid());
 			} else {
 				isExit = true;
-				Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "再按一次退出程序",
+						Toast.LENGTH_SHORT).show();
 				exitHandler.sendEmptyMessageDelayed(0, 2000);
 			}
 		}
 		return isExit;
 	}
-	
-	
+
 }
