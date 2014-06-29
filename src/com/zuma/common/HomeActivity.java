@@ -61,7 +61,6 @@ public class HomeActivity extends Activity {
 	private String userToken;
 	private int id, numLimit, state, ownerId, maleLimit, femaleLimit;
 	private Button faqi, xiaoxi, shezhi;
-	// , canjia, btn[];
 
 	private String title, desc, proposeTime, deadLine;
 	private Communicate_with_sql sql = new Communicate_with_sql();
@@ -80,6 +79,16 @@ public class HomeActivity extends Activity {
 	private ListView lv;
 	private List<GetAcitivityTask> ltask = new ArrayList<GetAcitivityTask>();
 	private List<Map<String, Object>> ldata = new ArrayList<Map<String, Object>>();
+	protected int eventMaxCount = 0;
+
+	public int getEventMaxCount() {
+		return eventMaxCount;
+	}
+
+	public void setEventMaxCount() {
+		/* ！！！更改为获取到的活动总数！！！ */
+		this.eventMaxCount = 25;
+	}
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -127,11 +136,7 @@ public class HomeActivity extends Activity {
 			}
 		});
 
-		//
 		setupListView();
-
-		// System.out.println("=============HomeActivity=============");
-
 	}
 
 	public List<Map<String, Object>> getData() {
@@ -149,7 +154,7 @@ public class HomeActivity extends Activity {
 	}
 
 	public void setupFooterView() {
-		
+
 		progressBar = new ProgressBar(this);
 		progressBar.setPadding(0, 0, 15, 0);
 		lv.addFooterView(progressBar);
@@ -158,6 +163,7 @@ public class HomeActivity extends Activity {
 	public void setupListView() {
 
 		lv = (ListView) findViewById(R.id.listView2);
+		setEventMaxCount();
 		setupFooterView();
 		setData();
 		setSimpleAdapter();
@@ -188,16 +194,60 @@ public class HomeActivity extends Activity {
 		});
 		lv.setOnScrollListener(new OnScrollListener() {
 
-			@Override
-			public void onScrollStateChanged(AbsListView arg0, int arg1) {
-				// TODO Auto-generated method stub
+			private int lastItem;
 
+			boolean isLastItem = false;
+
+			
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				// TODO Auto-generated method stub
+				if (scrollState == SCROLL_STATE_TOUCH_SCROLL && isLastItem) {
+					Map<String, Object> map;
+
+//					System.out.println("====stateChanged====" + "in" + lastItem  + "+3<<<<<" + eventMaxCount);
+					
+					if (lastItem + 3 < eventMaxCount) {
+						
+						for (int i = lastItem; i < lastItem + 3; i++) {
+							
+							map = new HashMap<String, Object>();
+							map.put(strs[0], R.drawable.avatar);
+							map.put(strs[1], "数据加载中");
+							ldata.add(map);
+							sa.notifyDataSetChanged();
+							ltask.add(new GetAcitivityTask());
+							ltask.get(ltask.size()-1).execute(i, map);
+//							System.out.println("====No last ltask.size====" + (ltask.size()-1+""));
+						}
+
+					} else {
+						for (int i = lastItem; i < eventMaxCount; i++) {
+							map = new HashMap<String, Object>();
+							map.put(strs[0], R.drawable.avatar);
+							map.put(strs[1], "数据加载中");
+							ldata.add(map);
+							sa.notifyDataSetChanged();
+							ltask.add(new GetAcitivityTask());
+							ltask.get(ltask.size()-1).execute(i, map);
+//							System.out.println("====last ltask.size====" + (ltask.size()-1+""));
+							lv.removeFooterView(progressBar);
+						}
+						sa.notifyDataSetChanged();
+					}
+				}
 			}
 
-			@Override
-			public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
 				// TODO Auto-generated method stub
-
+				if (firstVisibleItem + visibleItemCount >= totalItemCount) {
+					isLastItem = true;
+					lastItem = totalItemCount;
+					
+//					System.out.println("====lastItem====" + lastItem);
+				} else
+					isLastItem = false;
 			}
 		});
 
@@ -317,7 +367,7 @@ public class HomeActivity extends Activity {
 				map.put("time", "时间:" + proposeTime.substring(0, 10) + " 至 "
 						+ deadLine.substring(0, 10));
 
-				// System.out.println("map put =======" + ldata.size());
+//				System.out.println("====ASYNC====map put =======" + ldata.size());
 
 				HomeActivity.this.runOnUiThread(new Runnable() {
 					public void run() {
